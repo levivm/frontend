@@ -27,7 +27,7 @@
     width: 100vw;
     padding-right: 15px;
     transition: @transition-navbar;
-
+    &:extend(.flex-betweent-container);
     .before-md({
       height: @navbar-short-height;
       min-height: @navbar-short-height;
@@ -69,202 +69,104 @@
     &__logo-container {
         background-color: transparent;
         height: @navbar-height;
-        width: @sidebar-width + 1.1;
-        display: inline-block;
-        text-align: center;
-        transition: @transition-navbar;
-
+        width: 20%;
+        text-align: left;
+        &:extend(.flex-align-items-center);
+        &:extend(.flex-justify-start);
         .--on-dash & {
             width: @sidebar-width - 1.1;
         }
         .before-md({
             height: @navbar-short-height - 1 !important;
-            width: 125px;
+            width: 60%;
             background-color:white;
         });
+
+        &-city{
+          border-left: 1px solid @gray-dark;
+          padding: 2px 10px;
+          font-size: 0.9em;
+        }
+        &-width-user{
+          width: 50% !important;
+          .before-md({
+            width: 60% !important;
+          });
+        }
     }
     
     &__logo {
         background: url('@{s3url}/static/img/logo-green.png') no-repeat;
         height: @navbar-inner-height;
         width: 7em;
-        display: inline-block;
         background-size: contain;
-        margin: 10px auto 0;
+        margin: 10px 15px;
         transition: @transition-navbar;
         .before-md({
-            width:  ~"calc(100vw - 120px)";
             background-size: contain;
             position: relative;
-            height: 35px;
-            margin: 5px auto 0;
-            background-position: center center;
+            height: 30px;
+            margin: 0 auto;
+            background-position: center center !important;
         });
     }
-
+    &__center {
+      font-size: 0.8em;
+      width: 60%;
+      text-align: center;
+      a{
+        color: @gray-dark;
+        margin: 0 10px;
+        &:hover {
+          color: @gray-dark;
+        }
+      }
+     
+    }
     &__mobile-dashboard-controllers{
         width: ~"calc(100% - 154px)";
     }
     &__mobile-left-wrapper{
         padding-left: 30px;
-        display: inline-block;
-        vertical-align: top;
-        height: @navbar-inner-height;
-        .navbar__option{
-            background-color: transparent !important;
-            padding: 5px 2em 5px 0em;
-            text-align: left;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            float: left;
-            height: 50px;
-            line-height: 40px;
-            transition: all 0.25s;
-            font-weight: bold;
-            text-transform: uppercase;
-        }
+        width: 20%;
     }
-    &__left-wrapper {
-        display: inline-block;
-        vertical-align: top;
-        height: @navbar-inner-height;
-        width: ~"calc(100% - 465px)";
-        margin: 0.2em 1em;
-        .navbar__option--right{
-          float: right;
-          font-size: 13px;
-          padding-top: 0;
-        }
+    
+    &__right{
+      width: 20%;
+      text-align: right;
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
 
-        .buttons{
-            height: 100%;
-            padding: 1em 0;
-            margin-top: 3px;
-            font-size: 13px;
-            transition: @transition-navbar;
-        }
-        .buttons-login{
-            line-height: 2.4em;
-            > a{
-                color: @gray-dark;
-                text-decoration: none;
-                &:hover{
-                  color: @gray-darker;
-                }
-            }
-        }
+      &-search{
+        margin-right: 25px;
+        font-size: 1.2em;
+        color: @gray-dark;
+      }
 
-        &.long{
-           width: ~"calc(100% - 300px)";
-        }
+      &-profile{
+        text-decoration: none;
+        padding: 5px 2em 5px 0em;
+        /* text-align: left; */
+        /* cursor: pointer; */
+        display: flex;
+        align-items: center;
+        /* float: left; */
+        justify-content: center;
+        color: @gray-dark;
 
+        &:hover{
+          text-decoration: none;
+        }
+       }
+
+      &-width-user{
+        width: 50% !important;
         .before-md({
-            display: none;
+          width: 20% !important;
         });
+      }
     }
-
-    &__right-wrapper {
-        display: inline-block;
-        vertical-align: top;
-        height: @navbar-height;
-        transition: @transition-navbar;
-        //width: 40%;
-        text-align: right;
-        float: right;
-        font-size: 0.9em;
-        margin-right: 3em;
-        
-        .before-md({
-            max-width: 150px;
-            display: inline-block;
-            margin-right: 0;
-            height: @navbar-short-height;
-        });
-
-        .btn {
-            margin: (@navbar-padding-vertical+2) 1em;
-        }
-
-        & > div {
-            display: inline-block;
-        }
-        
-    }
-
-    &__option {
-        color: @lightbg-text;
-        display: inline-block;
-        padding: @navbar-padding-vertical 1em;
-        height: @navbar-height;
-        transition: @transition-navbar;
-        font-weight: bold;
-        text-transform: uppercase;
-        line-height: @navbar-height - (@navbar-padding-vertical*2);
-        .before-md({
-          padding: 0;
-          height: @navbar-short-height;
-          line-height: @navbar-short-height - (@navbar-padding-vertical*2);
-        });
-
-        &:active, &.open {
-            color: white;
-            background-color: @success !important;
-        }
-
-        &--right {
-            text-decoration: none;
-            padding: 5px 2em 5px 0em;
-            text-align: left;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            float: left;
-            span{
-              text-transform: capitalize;
-              font-weight: 600;
-              color: @gray-dark;
-            }
-            i{
-              font-size: 1.7em;
-              vertical-align: middle;
-
-            }
-            &:hover{
-                text-decoration: none;
-            }
-            .fa-bars{
-                font-size: 1.5em;
-                padding: 1.2em 0.8em;
-            }
-            .user-picture{
-                .img-responsive;
-                .img-circle;
-                padding: 0.6em;
-                width: 4em;
-                height: 4em;
-                display: inline-block;
-                .before-md({
-                  margin-right: -15px;
-                  width: 4em;
-                  height: 4em;
-                  margin-top: 5px;
-                });
-            }
-            .menu-icon{
-                .img-responsive;
-                padding: 1.4em;
-                width: 4em;
-                display: inline-block;
-                .before-md({
-                  &.menu-icon-user{
-                    margin-left: -5px;
-                  }
-                })
-            }
-        }
-    }
-
     .dropdown {
         width: auto;
         text-align: left;
@@ -301,6 +203,9 @@
             height: 35px;
           });
         }
+
+
+
         &__city{
             font-size: 11px;
             position: absolute;
@@ -357,12 +262,34 @@
     top: @navbar-short-height;
   }
 }
-.navbar-landing{
+.navbar-transparent{
   background: transparent !important;
   border: none;
   color: #FFFFFF !important;
     .navbar__logo-container{
       background: transparent !important;
+    }
+    .navbar__logo-container-city{
+      border-left: 1px solid white;
+    }
+    .navbar__logo{
+      background: url('@{s3url}/static/img/logo-white.png') no-repeat;
+      background-size: contain;
+    }
+    .navbar__center{
+      a{
+        color: white;
+        margin: 0 10px;
+        &:hover {
+          color: white;
+        }
+      }
+    }
+    .navbar__right-search{
+      color: white;
+    }
+    .navbar__right-profile{
+      color: white;
     }
     .navbar__option--right{
       border-left: none;

@@ -25,6 +25,9 @@
                 var unsuscribeCityModified = null;
                 var KEY_SEARCH_Q = SearchManager.KEY_QUERY;
                 var KEY_SEARCH_CITY = SearchManager.KEY_CITY;
+                var KEY_ORDER = SearchManager.KEY_ORDER;
+                var KEY_COST_START = SearchManager.KEY_COST_START;
+                var KEY_COST_END = SearchManager.KEY_COST_END;
 
                 angular.extend(scope, {
                     q : "",
@@ -53,11 +56,17 @@
 
                     var data = {};
                     data[KEY_SEARCH_Q] = scope.q;
-                    
+
                     data[KEY_SEARCH_CITY] = scope.search_city.id;
+
+                    data[KEY_ORDER] = 'closest';
+                    data[KEY_COST_START] = 50000;
+                    data[KEY_COST_END] = 250000;
 
                     SearchManager.setCity(data[KEY_SEARCH_CITY]);
                     SearchManager.setQuery(data[KEY_SEARCH_Q]);
+                    SearchManager.setOrder('closest');
+                    SearchManager.setCosts(50000, 250000);
 
                     Analytics.generalEvents.searchQuery(data[KEY_SEARCH_Q]);
 

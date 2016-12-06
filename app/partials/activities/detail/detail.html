@@ -34,7 +34,7 @@
             <div class="schedules-container" ng-class="{'expanded': detail.showSchedules}">
               <div class="schedules-container__header">
                 <p class="text-uppercase">
-                  <strong>Horarios</strong>
+                  <strong class="text-primary" ng-bind="::detail.strings.COPY_SCHEDULES"></strong>
                   <i class="fa fa-times" aria-hidden="true" ng-click="detail.toggleSchedules()"></i>
                 </p>
               </div>
@@ -65,6 +65,34 @@
                 <p ng-show="detail.isSelectedCalendarFull() && !detail.activity.is_open">
                     <span ng-bind="detail.strings.COPY_NO_VACANCY"></span>
                 </p>
+            </div>
+            <div class="price" ng-show="(!detail.isSelectedCalendarFull() && !detail.activity.is_open) || (!detail.isSelectedPackageFull() && detail.activity.is_open)">
+                <div ng-show="::!detail.activity.is_open">
+                    <div ng-hide="detail.calendar_selected.is_free">
+                        <div class="price__currency">
+                            $
+                        </div>
+                        <div class="price__number" ng-bind="detail.calendar_selected.session_price | number">
+                        </div>
+                    </div>
+                    <div ng-show="detail.calendar_selected.is_free">
+                        <div class="price__number">
+                        <div class="price__currency">
+                            $
+                        </div>
+                            <s ng-bind="detail.calendar_selected.session_price | number"></s>
+                        </div>
+                        <br>
+                        <h2 class="text-center no-margin" ng-bind="::detail.strings.COPY_FREE"></h2>
+                    </div>
+                </div>
+                <div ng-show="::detail.activity.is_open">
+                  <div class="price__currency">
+                      $
+                  </div>
+                  <div class="price__number" ng-bind="detail.package_selected.price | number">
+                  </div>
+                </div>
             </div>
             <hr>
             <p class="text-uppercase text-center" ng-show="!detail.activity.is_open && !detail.isSelectedCalendarFull()">
@@ -99,34 +127,6 @@
                 }">
               </option>
             </select>
-            <div class="price" ng-show="(!detail.isSelectedCalendarFull() && !detail.activity.is_open) || (!detail.isSelectedPackageFull() && detail.activity.is_open)">
-                <div ng-show="::!detail.activity.is_open">
-                    <div ng-hide="detail.calendar_selected.is_free">
-                        <div class="price__number" ng-bind="detail.calendar_selected.session_price | currency:'':0">
-                        </div>
-                        <div class="price__currency">
-                            COP
-                        </div>
-                    </div>
-                    <div ng-show="detail.calendar_selected.is_free">
-                        <div class="price__number">
-                            <s ng-bind="detail.calendar_selected.session_price | currency:'':0"></s>
-                        </div>
-                        <div class="price__currency">
-                            COP
-                        </div>
-                        <br>
-                        <h2 class="text-center no-margin" ng-bind="::detail.strings.COPY_FREE"></h2>
-                    </div>
-                </div>
-                <div ng-show="::detail.activity.is_open">
-                  <div class="price__number" ng-bind="detail.package_selected.price | currency:'':0">
-                      </div>
-                      <div class="price__currency">
-                          COP
-                      </div>
-                </div>
-            </div>
             <button class="btn btn-success btn-lg btn-rounded btn-block"
                 ng-bind="::detail.strings.ACTION_SIGN_UP"
                 ng-disabled="detail.isSelectedCalendarFull()"
@@ -146,22 +146,25 @@
               </div>
             </div>
             <div class="schedules">
-                <a href="#" ng-click="detail.toggleSchedules()" ng-bind="detail.strings.ACTION_VIEW_SCHEDULES"></a>
+                <a href="#" ng-click="detail.toggleSchedules()">
+                  <i class="fa fa-calendar" aria-hidden="true"></i>
+                  <span ng-bind="detail.strings.ACTION_VIEW_SCHEDULES"></span>
+                </a>
             </div>
         </div>
         <div class="activity-detail__enroll-widget__likes">
           <div class="heart">
-            <i class="mdi-action-favorite-outline"
+            <i class="mdi-action-favorite"
               ng-click="detail.wishList()"
-              ng-class="{'mdi-action-favorite': detail.verifyWishList(), 'text-muted': !detail.verifyWishList()}">
+              ng-class="{'filled': detail.verifyWishList(), 'text-muted': !detail.verifyWishList()}">
             </i>
           </div>
           <div class="copy">
             <!--12 personas aman esta actividad-->
-            <span class="text-center" ng-show="!detail.detail.verifyWishList()" ><strong ng-bind="::detail.strings.COPY_ADD_TO_WISHLIST"></strong></span>
-            <span class="text-center" ng-show="detail.detail.verifyWishList()" ng-bind="::detail.strings.COPY_REMOVE_FROM_WISHLIST"></span><br>
-            <span ng-bind="detail.activity.wishlist_count"></span>
-            <span>
+            <strong class="text-center" ng-show="!detail.detail.verifyWishList()" ng-bind="::detail.strings.COPY_ADD_TO_WISHLIST"></strong>
+            <strong class="text-center" ng-show="detail.detail.verifyWishList()" ng-bind="::detail.strings.COPY_REMOVE_FROM_WISHLIST"></strong><br>
+            <strong ng-bind="detail.activity.wishlist_count"></strong>
+            <strong>
               <ng-pluralize count="detail.activity.wishlist_count"
                         when="{
                         '0': detail.strings.COPY_NUMBER_OF_LIKES,
@@ -169,7 +172,7 @@
                         'other': detail.strings.COPY_NUMBER_OF_LIKES
                         }">
               </ng-pluralize>
-            </span>
+            </strong>
 
 
 
@@ -290,8 +293,8 @@
           <div class="info__content">
             <div ng-if="detail.calendar_selected.assistants.length>3" ng-class="{'col-xs-6': !detail.showLevel,  'col-xs-4': detail.calendar_selected.assistants.length>3 && detail.showLevel}">
                 <p class="text-center">
-                  <span ng-bind="detail.calendar_selected.assistants.length"></span>
-                  <span >
+                  <strong ng-bind="detail.calendar_selected.assistants.length"></strong>
+                  <strong>
                     <ng-pluralize count="detail.calendar_selected.assistants.length"
                         when="{
                         '0': 'Asistentes',
@@ -299,14 +302,13 @@
                         'other': 'Asistentes'
                         }">
                     </ng-pluralize>
-                  </span>
-
+                  </strong>
                 </p>
               </div>
               <div ng-if="detail.showLevel" ng-class="{'col-xs-6': detail.calendar_selected.assistants.length<4 || !detail.calendar_selected, 'col-xs-4': detail.calendar_selected.assistants.length>3}">
                 <p class="text-center">
-                  <span ng-bind="::detail.strings.VALUE_LEVEL"></span>
-                  <span ng-bind="::detail.activity.level_display"></span>
+                  <strong ng-bind="::detail.strings.VALUE_LEVEL"></strong>
+                  <strong ng-bind="::detail.activity.level_display"></strong>
                 </p>
               </div>
               <div ng-class="{'col-xs-12': !detail.showLevel && detail.calendar_selected.assistants.length<4, 'col-xs-6': (detail.calendar_selected.assistants.length<4 || !detail.calendar_selected || !detail.showLevel)  && !(!detail.showLevel && detail.calendar_selected.assistants.length<4), 'col-xs-4': detail.calendar_selected.assistants.length>3  && detail.showLevel}">
@@ -322,45 +324,64 @@
       <!--Audience-->
       <div class="row separate-above-less" ng-show="detail.activity.audience">
         <div class="col-xs-12 section">
-          <h4 ng-click="detail.showAudience = !detail.showAudience;">
-            <strong class="text-dark" ng-bind="::detail.strings.LABEL_AUDIENCE"></strong>
-            <img ng-src="{{detail.getAmazonUrl('static/img/plus.png')}}" class="collapse-icon" alt="" ng-show="!detail.showAudience">
-            <img ng-src="{{detail.getAmazonUrl('static/img/minus.png')}}" class="collapse-icon" alt="" ng-show="detail.showAudience">
-          </h4>
-          <div class="content content-html" ng-class="{'content-mobile': !detail.showAudience}">
-            <p ng-bind-html="::detail.activity.audience"></p>
+          <div class="row">
+            <div class="col-xs-12 col-md-3 col-lg-2">
+              <h5 class="text-primary text-uppercase" ng-click="detail.showAudience = !detail.showAudience;">
+                <strong ng-bind="::detail.strings.LABEL_AUDIENCE"></strong>
+                <img ng-src="{{detail.getAmazonUrl('static/img/plus.png')}}" class="collapse-icon" alt="" ng-show="!detail.showAudience">
+                <img ng-src="{{detail.getAmazonUrl('static/img/minus.png')}}" class="collapse-icon" alt="" ng-show="detail.showAudience">
+              </h5>
+            </div>
+            <div class="col-xs-12 col-md-9 col-lg-10">
+              <div class="content content-html" ng-class="{'content-mobile': !detail.showAudience}">
+                <p ng-bind-html="::detail.activity.audience"></p>
+              </div>
+              <hr class="detail-separator">
+            </div>  
           </div>
         </div>
       </div>
 
       <!--Content-->
-      <div class="row separate-above-less" ng-show="detail.activity.content">
+      <div class="row" ng-show="detail.activity.content">
         <div class="col-xs-12 section">
-          <h4 ng-click="detail.showContent = !detail.showContent;">
-            <strong class="text-dark" ng-bind="::detail.strings.LABEL_CONTENT"></strong>
-            <img ng-src="{{detail.getAmazonUrl('static/img/plus.png')}}" class="collapse-icon" alt="" ng-show="!detail.showContent">
-            <img ng-src="{{detail.getAmazonUrl('static/img/minus.png')}}" class="collapse-icon" alt="" ng-show="detail.showContent">
-          </h4>
-          <div class="content content-html" ng-class="{'content-mobile': !detail.showContent}">
-            <p ng-bind-html="::detail.activity.content" ></p>
+          <div class="row">
+            <div class="col-xs-12 col-md-3 col-lg-2">
+              <h5 class="text-primary text-uppercase" ng-click="detail.showContent = !detail.showContent;">
+                <strong ng-bind="::detail.strings.LABEL_CONTENT"></strong>
+                <img ng-src="{{detail.getAmazonUrl('static/img/plus.png')}}" class="collapse-icon" alt="" ng-show="!detail.showContent">
+                <img ng-src="{{detail.getAmazonUrl('static/img/minus.png')}}" class="collapse-icon" alt="" ng-show="detail.showContent">
+              </h4>
+            </div>
+            <div class="col-xs-12 col-md-9 col-lg-10">
+              <div class="content content-html" ng-class="{'content-mobile': !detail.showContent}">
+                <p ng-bind-html="::detail.activity.content" ></p>
+              </div>
+              <hr class="detail-separator">
+            </div>
           </div>
-
         </div>
       </div>
 
 
       <!--Goals-->
-      <div class="row separate-above-less" ng-show="detail.activity.goals">
+      <div class="row" ng-show="detail.activity.goals">
         <div class="col-xs-12 section">
-          <h4 ng-click="detail.showGoals = !detail.showGoals;">
-            <strong class="text-dark" ng-bind="::detail.strings.LABEL_GOALS"></strong>
-            <img ng-src="{{detail.getAmazonUrl('static/img/plus.png')}}" class="collapse-icon" alt="" ng-show="!detail.showGoals">
-            <img ng-src="{{detail.getAmazonUrl('static/img/minus.png')}}" class="collapse-icon" alt="" ng-show="detail.showGoals">
-          </h4>
-          <div class="content content-html" ng-class="{'content-mobile': !detail.showGoals}">
-            <p ng-bind-html="::detail.activity.goals" ></p>
+          <div class="row">
+            <div class="col-xs-12 col-md-3 col-lg-2">
+              <h5 class="text-primary text-uppercase" ng-click="detail.showGoals = !detail.showGoals;">
+                <strong ng-bind="::detail.strings.LABEL_GOALS"></strong>
+                <img ng-src="{{detail.getAmazonUrl('static/img/plus.png')}}" class="collapse-icon" alt="" ng-show="!detail.showGoals">
+                <img ng-src="{{detail.getAmazonUrl('static/img/minus.png')}}" class="collapse-icon" alt="" ng-show="detail.showGoals">
+              </h4>
+            </div>
+            <div class="col-xs-12 col-md-9 col-lg-10">
+              <div class="content content-html" ng-class="{'content-mobile': !detail.showGoals}">
+                <p ng-bind-html="::detail.activity.goals" ></p>
+              </div>
+              <hr class="detail-separator">
+            </div>
           </div>
-
         </div>
       </div>
 
@@ -376,73 +397,97 @@
 
 
       <!--Methodology-->
-      <div class="row separate-above-less" ng-show="detail.activity.methodology">
+      <div class="row" ng-show="detail.activity.methodology">
         <div class="col-xs-12 section">
           <div class="separator separate-vertical" ng-if="!detail.activity.youtube_video_url"></div>
-          <h4 ng-click="detail.showMethodology = !detail.showMethodology;">
-            <strong class="text-dark" ng-bind="::detail.strings.LABEL_METHODOLOGY"></strong>
-            <img ng-src="{{detail.getAmazonUrl('static/img/plus.png')}}" class="collapse-icon" alt="" ng-show="!detail.showMethodology">
-            <img ng-src="{{detail.getAmazonUrl('static/img/minus.png')}}" class="collapse-icon" alt="" ng-show="detail.showMethodology">
-          </h4>
-          <div class="content content-html" ng-class="{'content-mobile': !detail.showMethodology}">
-            <p  ng-bind-html="::detail.activity.methodology"></p>
+          <div class="row">
+            <div class="col-xs-12 col-md-3 col-lg-2">
+              <h5 class="text-primary text-uppercase" ng-click="detail.showMethodology = !detail.showMethodology;">
+                <strong ng-bind="::detail.strings.LABEL_METHODOLOGY"></strong>
+                <img ng-src="{{detail.getAmazonUrl('static/img/plus.png')}}" class="collapse-icon" alt="" ng-show="!detail.showMethodology">
+                <img ng-src="{{detail.getAmazonUrl('static/img/minus.png')}}" class="collapse-icon" alt="" ng-show="detail.showMethodology">
+              </h4>
+            </div>
+            <div class="col-xs-12 col-md-9 col-lg-10">
+              <div class="content content-html" ng-class="{'content-mobile': !detail.showMethodology}">
+                <p  ng-bind-html="::detail.activity.methodology"></p>
+              </div>
+              <hr class="detail-separator">
+            </div>
           </div>
-
         </div>
       </div>
 
 
       <!--Requirements-->
-      <div class="row separate-above-less" ng-show="detail.activity.requirements">
+      <div class="row" ng-show="detail.activity.requirements">
         <div class="col-xs-12 section">
-          <h4 ng-click="detail.showRequirements = !detail.showRequirements;">
-            <strong class="text-dark" ng-bind="::detail.strings.LABEL_REQUIREMENTS"></strong>
-            <img ng-src="{{detail.getAmazonUrl('static/img/plus.png')}}" class="collapse-icon" alt="" ng-show="!detail.showRequirements">
-            <img ng-src="{{detail.getAmazonUrl('static/img/minus.png')}}" class="collapse-icon" alt="" ng-show="detail.showRequirements">
-          </h4>
-          <div class="content content-html" ng-class="{'content-mobile': !detail.showRequirements}">
-            <p  ng-bind-html="::detail.activity.requirements"></p>
+          <div class="row">
+            <div class="col-xs-12 col-md-3 col-lg-2">
+              <h5 class="text-primary text-uppercase" ng-click="detail.showRequirements = !detail.showRequirements;">
+                <strong ng-bind="::detail.strings.LABEL_REQUIREMENTS"></strong>
+                <img ng-src="{{detail.getAmazonUrl('static/img/plus.png')}}" class="collapse-icon" alt="" ng-show="!detail.showRequirements">
+                <img ng-src="{{detail.getAmazonUrl('static/img/minus.png')}}" class="collapse-icon" alt="" ng-show="detail.showRequirements">
+              </h4>
+            </div>
+            <div class="col-xs-12 col-md-9 col-lg-10">
+              <div class="content content-html" ng-class="{'content-mobile': !detail.showRequirements}">
+                <p  ng-bind-html="::detail.activity.requirements"></p>
+              </div>
+              <hr class="detail-separator">
+            </div>
           </div>
-
         </div>
       </div>
 
-
       <!--Extra-->
-      <div class="row separate-above-less" ng-show="detail.activity.extra_info">
-
+      <div class="row" ng-show="detail.activity.extra_info">
         <div class="col-xs-12 section separate-below">
-          <h4 ng-click="detail.showExtra = !detail.showExtra;">
-            <strong class="text-dark" ng-bind="::detail.strings.LABEL_EXTRA_INFO"></strong>
-            <img ng-src="{{detail.getAmazonUrl('static/img/plus.png')}}" class="collapse-icon" alt="" ng-show="!detail.showExtra">
-            <img ng-src="{{detail.getAmazonUrl('static/img/minus.png')}}" class="collapse-icon" alt="" ng-show="detail.showExtra">
-          </h4>
-          <div class="content content-html" ng-class="{'content-mobile': !detail.showExtra}">
-            <p  ng-bind-html="::detail.activity.extra_info" ></p>
+          <div class="row">
+            <div class="col-xs-12 col-md-3 col-lg-2">
+              <h5 class="text-primary text-uppercase" ng-click="detail.showExtra = !detail.showExtra;">
+                <strong ng-bind="::detail.strings.LABEL_EXTRA_INFO"></strong>
+                <img ng-src="{{detail.getAmazonUrl('static/img/plus.png')}}" class="collapse-icon" alt="" ng-show="!detail.showExtra">
+                <img ng-src="{{detail.getAmazonUrl('static/img/minus.png')}}" class="collapse-icon" alt="" ng-show="detail.showExtra">
+              </h4>
+            </div>
+            <div class="col-xs-12 col-md-9 col-lg-10">
+              <div class="content content-html" ng-class="{'content-mobile': !detail.showExtra}">
+                <p  ng-bind-html="::detail.activity.extra_info" ></p>
+              </div>
+              <hr class="detail-separator">
+            </div>
           </div>
-
         </div>
       </div>
 
       <!--<div class="separate-above-more" ng-show="!detail.activity.extra_info"></div>-->
       <!--Instructors-->
       <div class="row" ng-show="detail.activity.instructors.length">
-          <div class="col-xs-12 section separate-below">
-              <h4 class="text-dark">
-                  <strong ng-bind="::detail.strings.LABEL_INSTRUCTORS"></strong>
-              </h4>
-              <div class="separate-above">
-                  <div class="row instructor" ng-repeat="instructor in detail.activity.instructors track by instructor.id">
-                      <div class="col-xs-12">
-                          <div class="name" ng-bind="::instructor.full_name"></div>
-                          <div class="content-html">
-                            <p class="bio" ng-bind-html="::instructor.bio"></p>
-                          </div>
-                          <hr ng-if="!$last"/>
-                      </div>
-                  </div>
+        <div class="col-xs-12 section separate-below">
+          <div>
+            <div class="row">
+              <div class="col-xs-12 col-md-3 col-lg-2">
+                <h5 class="text-primary text-uppercase">
+                    <strong ng-bind="::detail.strings.LABEL_INSTRUCTORS"></strong>
+                </h5>
               </div>
+              <div class="col-xs-12 col-md-9 col-lg-10">
+                <div class="row instructor" ng-repeat="instructor in detail.activity.instructors track by instructor.id">
+                    <div class="col-xs-12 no-margin">
+                        <h5 class="text-primary">
+                          <strong ng-bind="::instructor.full_name"></strong>
+                        </h5>
+                        <div class="content-html">
+                          <p class="bio" ng-bind-html="::instructor.bio"></p>
+                        </div>
+                        <hr ng-if="!$last"/>
+                    </div>
+                </div>
+              </div>
+            </div>
           </div>
+        </div>
       </div>
     </div>
   </div>
@@ -535,13 +580,12 @@
 <div class="related-activities-container col-xs-12 separate-above-medium hidden-xs hidden-sm" ng-if="detail.relatedActivities.length > 0">
   <div class="row">
       <div class="limited-width">
-        <h3 class="title" ng-bind="::detail.strings.COPY_SIMILAR_ACTIVITIES"></h3>
+        <div class="col-xs-12">
+          <h3 class="title" ng-bind="::detail.strings.COPY_SIMILAR_ACTIVITIES"></h3>
+        </div>
       </div>
       <div class="flex-cards separate-above-more" >
            <trulii-activity-item data-activity="activity" ng-repeat="activity in detail.cards"></trulii-activity-item>
-      </div>
-      <div class="col-xs-12 limited-width">
-        <a class="btn btn-lg btn-block btn-info" ui-sref="search(detail.searchData)" ng-bind="detail.strings.COPY_MORE_SIMILAR_ACTIVITIES"></a>
       </div>
   </div>
 </div>
@@ -550,14 +594,14 @@
 <div class="reasons-container col-xs-12 hidden-xs hidden-sm">
   <div class="row">
     <div class="col-xs-12 limited-width">
-      <h3 class="text-center title" ng-bind="::detail.strings.COPY_HEADER_REASONS_TO_USE">
-      </h3>
+      <h2 class="text-center font-arvo" ng-bind="::detail.strings.COPY_HEADER_REASONS_TO_USE">
+      </h2>
       <div class="reason reason-first col-xs-10 col-xs-offset-1 col-lg-4 col-lg-offset-0">
         <div class="">
           <img class="reason-img" ng-src="{{detail.getAmazonUrl('static/img/activity-detail/reason_no_commissions.png')}}"
           alt="{{ ::detail.strings.REASON_NO_COMMISSIONS }}"/>
           <div class="reason-text">
-            <div class="reason-title" ng-bind="::detail.strings.REASON_NO_COMMISSIONS"></div>
+            <div class="reason-title font-arvo" ng-bind="::detail.strings.REASON_NO_COMMISSIONS"></div>
             <div class="reason-copy" ng-bind="::detail.strings.REASON_COPY_NO_COMMISSIONS"></div>
           </div>
         </div>
@@ -567,7 +611,7 @@
           <img class="reason-img" ng-src="{{detail.getAmazonUrl('static/img/activity-detail/reason_guaranteed_refund.png')}}"
           alt="{{ ::detail.strings.REASON_REFUND }}"/>
           <div class="reason-text">
-            <div class="reason-title" ng-bind="::detail.strings.REASON_REFUND"></div>
+            <div class="reason-title font-arvo" ng-bind="::detail.strings.REASON_REFUND"></div>
             <div class="reason-copy" ng-bind="::detail.strings.REASON_COPY_REFUND"></div>
           </div>
         </div>
@@ -577,14 +621,16 @@
           <img class="reason-img" ng-src="{{detail.getAmazonUrl('static/img/activity-detail/reason_secure_payment.png')}}"
           alt="{{ ::detail.strings.REASON_SECURE }}"/>
           <div class="reason-text">
-            <div class="reason-title" ng-bind="::detail.strings.REASON_SECURE"></div>
+            <div class="reason-title font-arvo" ng-bind="::detail.strings.REASON_SECURE"></div>
             <div class="reason-copy text-sm" ng-bind="::detail.strings.REASON_COPY_SECURE"></div>
           </div>
         </div>
       </div>
       <p class="contact-us">
-        <span ng-bind="::detail.strings.COPY_DOUBTS"></span>
-        <a class="text-uppercase" target="_blank" ui-sref="contact-us(detail.current_state)" ng-bind="::detail.strings.ACTION_CONTACT_US"></a>
+        <strong>
+          <span ng-bind="::detail.strings.COPY_DOUBTS"></span>
+          <a class="text-uppercase" target="_blank" ui-sref="contact-us(detail.current_state)" ng-bind="::detail.strings.ACTION_CONTACT_US"></a>
+        </strong>
       </p>
     </div>
   </div>
@@ -598,7 +644,7 @@
             <div class="schedules-container" ng-class="{'expanded': detail.showSchedules}">
               <div class="schedules-container__header">
                 <p class="text-uppercase">
-                  <strong>Horarios</strong>
+                  <strong class="text-primary" ng-bind="::detail.strings.COPY_SCHEDULES"></strong>
                   <i class="fa fa-times" aria-hidden="true" ng-click="detail.toggleSchedules()"></i>
                 </p>
               </div>
@@ -615,6 +661,34 @@
                   <i class="fa fa-chevron-down" aria-hidden="true"></i>
                 </div>
               </div>
+            </div>
+            <div class="price" ng-show="(!detail.isSelectedCalendarFull() && !detail.activity.is_open) || (!detail.isSelectedPackageFull() && detail.activity.is_open)">
+                <div ng-show="::!detail.activity.is_open">
+                    <div ng-hide="detail.calendar_selected.is_free">
+                        <div class="price__number" ng-bind="detail.calendar_selected.session_price | currency:'':0">
+                        </div>
+                        <div class="price__currency">
+                            COP
+                        </div>
+                    </div>
+                    <div ng-show="detail.calendar_selected.is_free">
+                        <div class="price__number">
+                            <s ng-bind="detail.calendar_selected.session_price | currency:'':0"></s>
+                        </div>
+                        <div class="price__currency">
+                            COP
+                        </div>
+                        <br>
+                        <h2 class="text-center no-margin" ng-bind="::detail.strings.COPY_FREE"></h2>
+                    </div>
+                </div>
+                <div ng-show="::detail.activity.is_open">
+                  <div class="price__number" ng-bind="detail.package_selected.price | currency:'':0">
+                      </div>
+                      <div class="price__currency">
+                          COP
+                      </div>
+                </div>
             </div>
             <div class="seats">
                 <p ng-show="!detail.isSelectedCalendarFull() && !detail.activity.is_open">
@@ -663,34 +737,6 @@
                 }">
               </option>
             </select>
-            <div class="price" ng-show="(!detail.isSelectedCalendarFull() && !detail.activity.is_open) || (!detail.isSelectedPackageFull() && detail.activity.is_open)">
-                <div ng-show="::!detail.activity.is_open">
-                    <div ng-hide="detail.calendar_selected.is_free">
-                        <div class="price__number" ng-bind="detail.calendar_selected.session_price | currency:'':0">
-                        </div>
-                        <div class="price__currency">
-                            COP
-                        </div>
-                    </div>
-                    <div ng-show="detail.calendar_selected.is_free">
-                        <div class="price__number">
-                            <s ng-bind="detail.calendar_selected.session_price | currency:'':0"></s>
-                        </div>
-                        <div class="price__currency">
-                            COP
-                        </div>
-                        <br>
-                        <h2 class="text-center no-margin" ng-bind="::detail.strings.COPY_FREE"></h2>
-                    </div>
-                </div>
-                <div ng-show="::detail.activity.is_open">
-                  <div class="price__number" ng-bind="detail.package_selected.price | currency:'':0">
-                      </div>
-                      <div class="price__currency">
-                          COP
-                      </div>
-                </div>
-            </div>
             <button class="btn btn-success btn-lg btn-rounded btn-block"
                 ng-bind="::detail.strings.ACTION_SIGN_UP"
                 ng-disabled="detail.isSelectedCalendarFull()"
@@ -715,17 +761,17 @@
         </div>
         <div class="activity-detail__enroll-widget__likes">
           <div class="heart">
-            <i class="mdi-action-favorite-outline"
+            <i class="mdi-action-favorite"
               ng-click="detail.wishList()"
-              ng-class="{'mdi-action-favorite': detail.verifyWishList(), 'text-muted': !detail.verifyWishList()}">
+              ng-class="{'filled': detail.verifyWishList(), 'text-muted': !detail.verifyWishList()}">
             </i>
           </div>
           <div class="copy">
             <!--12 personas aman esta actividad-->
-            <span class="text-center" ng-show="!detail.detail.verifyWishList()" ><strong ng-bind="::detail.strings.COPY_ADD_TO_WISHLIST"></strong></span>
-            <span class="text-center" ng-show="detail.detail.verifyWishList()" ng-bind="::detail.strings.COPY_REMOVE_FROM_WISHLIST"></span><br>
-            <span ng-bind="detail.activity.wishlist_count"></span>
-            <span>
+            <strong class="text-center" ng-show="!detail.detail.verifyWishList()" ng-bind="::detail.strings.COPY_ADD_TO_WISHLIST"></strong>
+            <strong class="text-center" ng-show="detail.detail.verifyWishList()" ng-bind="::detail.strings.COPY_REMOVE_FROM_WISHLIST"></strong><br>
+            <strong ng-bind="detail.activity.wishlist_count"></strong>
+            <strong>
               <ng-pluralize count="detail.activity.wishlist_count"
                         when="{
                         '0': detail.strings.COPY_NUMBER_OF_LIKES,
@@ -733,7 +779,7 @@
                         'other': detail.strings.COPY_NUMBER_OF_LIKES
                         }">
               </ng-pluralize>
-            </span>
+            </strong>
             <!--<span ng-if="detail.activity.wishlist_count === 0" ng-bind="::detail.strings.COPY_BE_THE_FIRST"></span>-->
           </div>
         </div>

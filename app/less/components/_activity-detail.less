@@ -19,6 +19,7 @@
     }
     .col-xs-12{
         z-index: 902;
+        margin: 10px 0;
     }
     &__share-widget{
         z-index: 1060;
@@ -223,7 +224,7 @@
             border: 1px solid @gray-lighter;
             padding: 20px;
             transition: all 0.5s;
-            color: @gray-darker-brand;
+            color: @gray-dark;
             background-color: white;
             position: relative;
 
@@ -273,11 +274,11 @@
                     p, ol, ul, li, h1, h2, h3, h4, h5, span, u, i{
                         font-size: 14px !important;
                         font-weight: 500 !important;
-                        color: #222328 !important;
+                        color: @gray-dark !important;
                     }
                     b{
                         font-size: 14px !important;
-                        color: #222328 !important;
+                        color: @gray-dark !important;
                     }
                     a{
                         display: none;
@@ -326,8 +327,8 @@
 
             hr{
                 margin-top: 5px;
-                margin-bottom: 10px;
-                border-top: 2px solid @gray-lighter;
+                margin-bottom: 15px;
+                border-top: 1px solid @gray-regular-dark;
                 width: 30px;
             }
             .seats{
@@ -344,6 +345,9 @@
             select.form-control{
                 text-transform: uppercase;
                 height: 38px !important;
+                background-color: @gray-lightest-brand !important;
+                border-radius: @border-radius-base !important;
+                border-color: @gray-dark;
             }
             p{
                 color: @gray-darker !important;
@@ -356,7 +360,8 @@
             }
             .price{
                 text-align: center;
-                margin: 10px 0 20px;
+                margin: 10px 0;
+                color: @gray-darker-brand;
                 div{
                     display: inline-block;
                 }
@@ -365,17 +370,16 @@
                     font-weight: 600;
                 }
                 &__currency{
-                    font-size: 14px;
+                    font-size: 36px;
                     margin-left: 4px;
-                    font-weight: 500;
+                    font-weight: 600;
                 }
             }
 
             .schedules{
                 margin: 10px 0;
                 a{
-                    text-decoration: underline;
-                    color: @gray-darker;
+                    color: @gray-dark;
                     text-transform: uppercase;
                     text-align: center;
                     width: auto;
@@ -383,6 +387,13 @@
                     display: inherit;
                     font-weight: bold;
                     font-size: 12px;
+                }
+                .fa-calendar{
+                    font-size: 20px;
+                    padding-right: 5px;
+                }
+                span{
+                    text-decoration: underline;
                 }
             }
 
@@ -407,7 +418,7 @@
                 i{
                     cursor: pointer;
                 }
-                .mdi-action-favorite{
+                .filled{
                     color: @brand-heart;
                 }
             }
@@ -451,7 +462,7 @@
         word-break: break-word;
         margin-bottom: 0px;
         font-size: 1.1em;
-        color: @gray-regular-dark;
+        color: @gray-dark !important;
         font-weight: 600;
         .before-sm({
             word-break: inherit;
@@ -477,14 +488,14 @@
       &__content{
           font-weight: 800 !important;
           text-transform: uppercase;
-          border: 1px solid @gray-lighter;
+          border: 1px solid @gray-dark;
           border-radius: @border-radius-base;
           width: 100%;
           padding: 10px;
           display: inline-block;
           p{
               font-size: 12px;
-              color: @gray-darker-brand;
+              color: @gray-dark !important;
               font-weight: bold;
           }
           div:nth-child(2){
@@ -499,13 +510,13 @@
 }
 .content-html{
   p, ol, ul, li, h1, h2, h3, h4, h5, span, u, i{
-      font-size: 15.5px !important;
-      font-weight: 500 !important;
-      color: #222328 !important;
+    font-size: 14px !important;
+    color: @gray-dark !important;
+    font-weight: bold !important;
   }
   b{
       font-size: 15.5px !important;
-      color: #222328 !important;
+      color: @gray-dark !important;
   }
   a{
 	  display: none;
@@ -1136,7 +1147,7 @@
         padding: 5px 20px;
         color: @gray-darker;
         span{
-            font-weight: 600;
+            font-weight: 300;
         }
     }
 }
@@ -1432,8 +1443,8 @@
 }
 
 .reasons-container {
-    background-color: @gray-lighter-brand;
-    color: @gray-darker;
+    background-color: @brand-success-dark;
+    color: white;
     text-align: center;
     padding-top: 30px;
     padding-bottom: 30px;
@@ -1449,7 +1460,7 @@
         @media (min-width: 1200px){
             text-align: start;
             display: inline-block;
-            padding: 2em;
+            padding: 2em 1em;
             display: -webkit-box !important;
             display: -webkit-flex !important;
             display: -ms-flexbox !important;
@@ -1514,9 +1525,10 @@
             }
 
             .reason-copy {
-                font-size: 0.85em;
-                font-weight: 500;
-                color: @gray-dark;
+                font-size: 0.9em;
+                font-weight: 700;
+                padding-top: 0.25em;
+                color: white;
             }
 
             @media (min-width: 1200px){
@@ -1529,8 +1541,9 @@
         font-weight: 400;
         clear: both;
         padding-top: 25px;
+        color: white;
         a {
-            color: @gray-dark;
+            color: white;
             text-decoration: underline;
         }
     }
@@ -1658,6 +1671,10 @@
     .content-mobile{
         display: none;
     }
+}
 
-
+.detail-separator{
+    margin-top: 30px;
+    margin-bottom: 0px;
+    border-color: @gray-light;
 }
