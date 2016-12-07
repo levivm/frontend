@@ -22937,13 +22937,13 @@ blockquote {
   display: block;
 }
 .reviews-container--ratings__info .header {
-  color: #4F5362;
+  color: #292929;
   font-weight: 700;
   font-size: 18px;
   margin-top: 8px;
 }
 .reviews-container--ratings__info a {
-  color: #4F5362;
+  color: #292929;
   font-weight: 400;
   font-size: 18px;
   margin-bottom: 10px;
@@ -26554,6 +26554,21 @@ blockquote {
   z-index: -1;
   width: 600px;
   height: auto;
+}
+.trulii-tv .play-button {
+  background-color: #FF2B3A;
+  width: 30px;
+  height: 30px;
+  display: inline-block;
+}
+.trulii-tv .play-button .play-icon {
+  width: 0;
+  height: 0;
+  border-style: solid;
+  display: inline-block;
+  border-width: 7.5px 0 7.5px 10px;
+  margin-top: 7.5px;
+  border-color: transparent transparent transparent #ffffff;
 }
 .activities-filters .btn {
   padding: 5px 15px;
