@@ -61,12 +61,12 @@
 
                     data[KEY_ORDER] = 'closest';
                     data[KEY_COST_START] = 50000;
-                    data[KEY_COST_END] = 250000;
+                    data[KEY_COST_END] = 1000000;
 
                     SearchManager.setCity(data[KEY_SEARCH_CITY]);
                     SearchManager.setQuery(data[KEY_SEARCH_Q]);
                     SearchManager.setOrder('closest');
-                    SearchManager.setCosts(50000, 250000);
+                    SearchManager.setCosts(50000, 1000000);
 
                     Analytics.generalEvents.searchQuery(data[KEY_SEARCH_Q]);
 
