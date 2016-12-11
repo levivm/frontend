@@ -38,7 +38,7 @@
             searchLevel : null,
             searchDate : null,
             searchStartCost : 50000,
-            searchEndCost : 250000,
+            searchEndCost : 1000000,
             categories : [],
             format : FORMATS[0],
             minStartDate : new Date(),
