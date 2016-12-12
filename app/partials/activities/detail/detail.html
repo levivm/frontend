@@ -273,11 +273,16 @@
               </div>
             </div>
 
-            <i class="gallery-previous mdi-hardware-keyboard-arrow-left" ng-hide="detail.currentGalleryPicture < 1"
+            <!-- <i class="gallery-previous mdi-hardware-keyboard-arrow-left" ng-hide="detail.currentGalleryPicture < 1"
               ng-click="detail.previousGalleryPicture()">
             </i>
             <i class="gallery-next mdi-hardware-keyboard-arrow-right" ng-hide="detail.currentGalleryPicture >= detail.activity.gallery.length - 1"
-              ng-click="detail.nextGalleryPicture()">
+              ng-click="detail.nextGalleryPicture()"> -->
+
+            <img class="gallery-previous" ng-src="{{detail.getAmazonUrl('static/img/arrow_right.png')}}"  ng-hide="detail.currentGalleryPicture < 1"
+              ng-click="detail.previousGalleryPicture()">
+
+            <img class="gallery-next" ng-src="{{detail.getAmazonUrl('static/img/arrow_right.png')}}" ng-hide="detail.currentGalleryPicture >= detail.activity.gallery.length - 1" ng-click="detail.nextGalleryPicture()">
             </i>
 
           </div>
@@ -747,12 +752,11 @@
         </div>
       </div>
 
-      <i class="gallery-previous mdi-hardware-keyboard-arrow-left" ng-hide="detail.currentGalleryPicture < 1"
-        ng-click="detail.previousGalleryPicture()">
-      </i>
-      <i class="gallery-next mdi-hardware-keyboard-arrow-right" ng-hide="detail.currentGalleryPicture >= detail.activity.gallery.length - 1"
-        ng-click="detail.nextGalleryPicture()">
-      </i>
+      <img class="gallery-previous" ng-src="{{detail.getAmazonUrl('static/img/arrow_right.png')}}"  ng-hide="detail.currentGalleryPicture < 1"
+          ng-click="detail.previousGalleryPicture()">
+
+        <img class="gallery-next" ng-src="{{detail.getAmazonUrl('static/img/arrow_right.png')}}" ng-hide="detail.currentGalleryPicture >= detail.activity.gallery.length - 1" ng-click="detail.nextGalleryPicture()">
+        </i>
     </div>
   </div>
   <div class="absolute-container__background"  ng-click="detail.toggleGalleryShow()">

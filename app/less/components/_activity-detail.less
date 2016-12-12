@@ -967,12 +967,9 @@
 
     .GalleryButton {
         position: absolute;
-        bottom: 1em;
-        z-index: 6;
-        border-radius: 50%;
+        top: 170px;
         cursor: pointer;
-        color: white;
-        font-size: 30px;
+        z-index: 7;
     }
 
     .gallery-slide {
@@ -982,29 +979,29 @@
         left: 0;
         width: 100%;
         height: 100%;
-        background-size: cover;
         //opacity: .6;
 
         &-picture{
             width: 100%;
             height: 400px;
-            background-size: cover;
+            background-size: 100% 100%;
             z-index: 4;
+            background-repeat: no-repeat;
+            background-position: center center;
         }
     }
 
     .gallery-previous {
         .GalleryButton;
-        left: 1em;
-        z-index: 7;
-        text-shadow: 2px 2px 8px @gray-darker;
+        left: 2em;
     }
 
     .gallery-next {
         .GalleryButton;
-        right: 1em;
-        z-index: 7;
-        text-shadow: -2px 2px 8px @gray-darker;
+        right: 2em;
+        -ms-transform: rotate(180deg); /* IE 9 */
+        -webkit-transform: rotate(180deg); /* Chrome, Safari, Opera */
+        transform: rotate(180deg);
     }
 
     .gallery-info {

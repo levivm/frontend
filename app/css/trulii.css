@@ -22785,12 +22785,9 @@ blockquote {
 }
 .gallery .GalleryButton {
   position: absolute;
-  bottom: 1em;
-  z-index: 6;
-  border-radius: 50%;
+  top: 170px;
   cursor: pointer;
-  color: white;
-  font-size: 30px;
+  z-index: 7;
 }
 .gallery .gallery-slide {
   position: absolute;
@@ -22799,37 +22796,33 @@ blockquote {
   left: 0;
   width: 100%;
   height: 100%;
-  background-size: cover;
 }
 .gallery .gallery-slide-picture {
   width: 100%;
   height: 400px;
-  background-size: cover;
+  background-size: 100% 100%;
   z-index: 4;
+  background-repeat: no-repeat;
+  background-position: center center;
 }
 .gallery .gallery-previous {
   position: absolute;
-  bottom: 1em;
-  z-index: 6;
-  border-radius: 50%;
+  top: 170px;
   cursor: pointer;
-  color: white;
-  font-size: 30px;
-  left: 1em;
   z-index: 7;
-  text-shadow: 2px 2px 8px #222328;
+  left: 2em;
 }
 .gallery .gallery-next {
   position: absolute;
-  bottom: 1em;
-  z-index: 6;
-  border-radius: 50%;
+  top: 170px;
   cursor: pointer;
-  color: white;
-  font-size: 30px;
-  right: 1em;
   z-index: 7;
-  text-shadow: -2px 2px 8px #222328;
+  right: 2em;
+  -ms-transform: rotate(180deg);
+  /* IE 9 */
+  -webkit-transform: rotate(180deg);
+  /* Chrome, Safari, Opera */
+  transform: rotate(180deg);
 }
 .gallery .gallery-info {
   position: absolute;
