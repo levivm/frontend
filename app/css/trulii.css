@@ -17278,8 +17278,12 @@ tags-input input {
 }
 .btn-default {
   background-color: white;
-  border: 1px solid #ededed;
+  border: 3px solid transparent;
   color: #3A405B !important;
+}
+.btn-default:hover,
+.btn-default:focus {
+  border-color: transparent;
 }
 .btn-success {
   border-color: transparent;
@@ -17384,6 +17388,39 @@ tags-input input {
 .btn:focus {
   outline: 0 !important;
 }
+.btn-bordered {
+  color: #222328 !important;
+  border-width: 3px;
+  border-color: #00e2aa !important;
+  background-color: transparent !important;
+  transition: all 0.25s;
+}
+.btn-bordered:hover {
+  color: white !important;
+  background-color: #00e2aa !important;
+  border-color: #03d69a;
+}
+.btn-bordered:active {
+  color: white !important;
+  background-color: #00e2aa !important;
+  border-color: #03d69a;
+}
+.btn-bordered:focus {
+  color: white !important;
+  background-color: #00e2aa !important;
+  border-color: #03d69a;
+}
+.btn-yellow {
+  color: #222328 !important;
+  border-color: transparent;
+  background-color: #f4d352 !important;
+}
+.btn-yellow:hover,
+.btn-yellow:active,
+.btn-yellow:focus {
+  border-color: #f4d352;
+  background-color: #f2cd3a !important;
+}
 .btn-rounded {
   border-radius: 30px !important;
 }
@@ -17395,6 +17432,11 @@ tags-input input {
 }
 .btn-success-dark:hover {
   color: white;
+}
+@media screen and (max-width: 992px) {
+  .btn-block-mobile {
+    width: 100%;
+  }
 }
 @media (max-width: 991px) {
   .btn {
@@ -21631,6 +21673,19 @@ blockquote {
   border-left: 5px solid #51dde9 !important;
   font-size: 16.5px;
   line-height: 30px;
+}
+.container-yellow {
+  background-color: #f4d352;
+}
+.container-yellow p,
+.container-yellow h1,
+.container-yellow h3,
+.container-yellow h4,
+.container-yellow h5 {
+  color: white;
+}
+.container-yellow a {
+  color: white !important;
 }
 .trulii-activity-card {
   position: relative;

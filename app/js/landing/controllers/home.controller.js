@@ -13,9 +13,8 @@
         .module('trulii.landing.controllers')
         .controller('HomeController', HomeController);
 
-    HomeController.$inject = ['Elevator', '$state', '$scope', '$rootScope', 'activities', 'generalInfo', 'LocationManager','serverConf', 'Analytics', '$sce', '$stateParams', 'featuredOrganizers'];
-    function HomeController(Elevator, $state, $scope, $rootScope, activities, generalInfo, LocationManager, serverConf, Analytics, $sce, $stateParams, featuredOrganizers) {
-
+    HomeController.$inject = ['Elevator', '$state', '$scope', '$rootScope', '$sce', 'activities', 'generalInfo', 'LocationManager','serverConf', 'Analytics', '$stateParams', 'featuredOrganizers', 'SearchManager'];
+    function HomeController(Elevator, $state, $scope, $rootScope, $sce, activities, generalInfo, LocationManager, serverConf, Analytics, $stateParams, featuredOrganizers, SearchManager) {
 
         var ACTIVITIES_STEP = 8;
         var activitiesIndex = 0;
@@ -38,7 +37,9 @@
             coverVideo: {},
             getAmazonUrl: getAmazonUrl,
             getAmazonVideoUrl:getAmazonVideoUrl,
-            cards: []
+            cards: [],
+            selectedActivityFilter: "1",
+            changeActivityFilter: changeActivityFilter
         });
 
         _activate();
@@ -80,6 +81,51 @@
         function searchCategory(category){
             Analytics.generalEvents.searchCategoryLanding(category.name)
         }
+
+        function changeActivityFilter(index){
+            vm.selectedActivityFilter = index;
+
+            var parameters = {
+                'city': 1,
+                'cost_start': 30000,
+                'cost_end': 1000000,
+                'page': 1,
+                'o': "closest"
+            };
+
+            if(index === "4"){
+                parameters.cost_end = 99000;
+                parameters.cost_start = 0;
+            }
+            if(index === "5"){
+                parameters.category = 10;
+            }
+            if(index === "6"){
+                parameters.category = 5;
+            }
+            if(index === "7"){
+                parameters.category = 7;
+            }
+
+            return SearchManager.searchActivities(parameters).then(success, error);
+
+            function success(response) {
+                vm.activities = response.activities;
+                vm.loadingActivities = false;
+
+                for(var i = 0; i < vm.activities.length; i++){
+                    vm.activities[i].template = "partials/activities/dynamic_layout_item.html";
+                }
+
+                vm.cards = vm.activities;
+            }
+
+            function error(error) {
+                console.log('_getActivities. Error obtaining Activities from ActivitiesManager');
+
+            }
+        }
+
         // --------- Internal Functions ---------//
 
         function _setCategories(){
@@ -159,7 +205,14 @@
                 "te ayudamos a <strong>aumentar tus ingresos</strong> buscándote nuevos asistentes mientras tú <strong>te enfocas en enseñar</strong> lo que te gusta.",
                 PUBLISH_TEXT_2: "Regístrate sin costo alguno y comienza a llenar tus cupos. ¡Trabajemos juntos!",
                 PUBLISH_TEXT_3: "¡Crece con nosotros!",
-                PUBLISH_BUTTON_COPY: "Me interesa, ¡Cuéntame más!"
+                PUBLISH_BUTTON_COPY: "Me interesa, ¡Cuéntame más!",
+                FILTER_COMING_UP: "Por comenzar",
+                FILTER_RECENT: "Recién publicadas",
+                FILTER_POPULARS: "Populares",
+                FILTER_LESS_NINETYNINE: "Menos de $99Mil",
+                FILTER_GET_IN_SHAPE: "¡Ponte en forma!",
+                FILTER_RESUME: "Mejora tu HV",
+                FILTER_CREATIVES: "Creativas"
             });
         }
 

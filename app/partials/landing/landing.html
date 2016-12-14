@@ -30,11 +30,7 @@
       </div>
     </div>
     <!--First section background-->
-    <div class="trulii-cover__background" style="background-image:url({{::home.getAmazonUrl('static/img/banner_landing.jpg');}})">
-      <section class="video">
-        <video class="trulii-cover__background-video" ng-src="{{home.getAmazonVideoUrl('static/videos/home_banner.mp4')}}" autoplay vi-screen loop>
-        </video>
-      </section>
+    <div class="trulii-cover__background" style="background-image: url({{home.getAmazonUrl('static/img/home/banners/banner.png')}});">
     </div>
   </div>
 </div>
@@ -127,65 +123,62 @@
           </div>
         </div>
       </div>
-      <hr class="col-xs-12 col-md-6 col-md-offset-3  separate-below-medium  separate-above-medium">
       <div class="col-xs-12">
         <div class="row limited-width">
           <div class="col-xs-12 separate-above-more separate-below-more">
             <div class="row">
-              <div class="col-xs-12 separate-above">
-                <div class="row">
-                  <div class="col-xs-12">
-                    <h1 class="text-center separate-below text-xxlg font-arvo text-dark">
-                      <span ng-bind="::home.strings.ACTIVITIES_TITLE_COPY"></span>
-                    </h1>
-                  </div>
-                </div>
-              </div>
-              <div class="col-xs-12 separate-above">
+              <div class="col-xs-12 separate-above separate-below">
                 <ul class="list-unstyled list-inline text-center activities-filters hidden-xs hidden-sm">
-                  <li class="btn btn-sm btn-bordered">
-                    Por comenzar
+                  <li class="btn btn-sm" 
+                    ng-class="{'btn-bordered': home.selectedActivityFilter === '1', 'btn-default': home.selectedActivityFilter !== '1'}"
+                    ng-bind="home.strings.FILTER_COMING_UP"
+                    ng-click="home.changeActivityFilter('1')">
                   </li>
-                  <li class="btn btn-sm btn-default">
-                    Recién publicadas
+                  <li class="btn btn-sm" 
+                    ng-class="{'btn-bordered': home.selectedActivityFilter === '2', 'btn-default': home.selectedActivityFilter !== '2'}"
+                    ng-bind="home.strings.FILTER_RECENT"
+                    ng-click="home.changeActivityFilter('2')">
                   </li>
-                  <li class="btn btn-sm btn-default">
-                    Populares
+                  <li class="btn btn-sm" 
+                    ng-class="{'btn-bordered': home.selectedActivityFilter === '3', 'btn-default': home.selectedActivityFilter !== '3'}"
+                    ng-bind="home.strings.FILTER_POPULARS"
+                    ng-click="home.changeActivityFilter('3')">
                   </li>
-                  <li class="btn btn-sm btn-default">
-                    Menos de $99Mil
+                  <li class="btn btn-sm" 
+                    ng-class="{'btn-bordered': home.selectedActivityFilter === '4', 'btn-default': home.selectedActivityFilter !== '4'}"
+                    ng-bind="home.strings.FILTER_LESS_NINETYNINE"
+                    ng-click="home.changeActivityFilter('4')">
                   </li>
-                  <li class="btn btn-sm btn-default">
-                    ¡Ponte en forma!
+                  <li class="btn btn-sm" 
+                    ng-class="{'btn-bordered': home.selectedActivityFilter === '5', 'btn-default': home.selectedActivityFilter !== '5'}"
+                    ng-bind="home.strings.FILTER_GET_IN_SHAPE"
+                    ng-click="home.changeActivityFilter('5')">
                   </li>
-                  <li class="btn btn-sm btn-default">
-                    Mejora tu HV
+                  <li class="btn btn-sm" 
+                    ng-class="{'btn-bordered': home.selectedActivityFilter === '6', 'btn-default': home.selectedActivityFilter !== '6'}"
+                    ng-bind="home.strings.FILTER_RESUME"
+                    ng-click="home.changeActivityFilter('6')">
                   </li>
-                  <li class="btn btn-sm btn-default">
-                    Creativas
+                  <li class="btn btn-sm" 
+                    ng-class="{'btn-bordered': home.selectedActivityFilter === '7', 'btn-default': home.selectedActivityFilter !== '7'}"
+                    ng-bind="home.strings.FILTER_CREATIVES"
+                    ng-click="home.changeActivityFilter('7')">
                   </li>
                 </ul>
-                <select name="" id="" class="form-control hidden-md hidden-lg" ng-model="home.selectedACtivityFilter" ng-change="home.changeActivityFilter()">
-                  <option value="1">
-                    Por comenzar
+                <select name="" id="" class="form-control hidden-md hidden-lg" ng-model="home.selectedActivityFilter" ng-change="home.changeActivityFilter()">
+                  <option value="1" ng-bind="home.strings.FILTER_COMING_UP">
                   </option>
-                  <option value="2">
-                    Recién publicadas
+                  <option value="2" ng-bind="home.strings.FILTER_RECENT">
                   </option>
-                  <option value="3">
-                    Populares
+                  <option value="3" ng-bind="home.strings.FILTER_POPULARS">
                   </option>
-                  <option value="4">
-                    Menos de $99Mil
+                  <option value="4" ng-bind="home.strings.FILTER_LESS_NINETYNINE">
                   </option>
-                  <option value="5">
-                    ¡Ponte en forma!
+                  <option value="5" ng-bind="home.strings.FILTER_GET_IN_SHAPE">
                   </option>
-                  <option value="6">
-                    Mejora tu HV
+                  <option value="6" ng-bind="home.strings.FILTER_RESUME">
                   </option>
-                  <option value="7">
-                    Creativas
+                  <option value="7" ng-bind="home.strings.FILTER_CREATIVES">
                   </option>
                 </select>
               </div>
