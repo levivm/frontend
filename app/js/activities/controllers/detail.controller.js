@@ -36,7 +36,7 @@
             calendars : [],
             reviews: [],
             cards: [],
-            relatedActivities: relatedActivities.results.slice(0, 4),
+            relatedActivities: relatedActivities.results.slice(0, 6),
             calendar : null,
             activity : null,
             organizer : organizer,
@@ -361,7 +361,147 @@
                 });
             }
             vm.map = LocationManager.getMap(activity.location, false);
+            vm.map.options = {
+                styles: [
+                    {
+                        "featureType": "landscape.man_made",
+                        "elementType": "geometry",
+                        "stylers": [
+                            {
+                                "color": "#f7f1df"
+                            }
+                        ]
+                    },
+                    {
+                        "featureType": "landscape.natural",
+                        "elementType": "geometry",
+                        "stylers": [
+                            {
+                                "color": "#d0e3b4"
+                            }
+                        ]
+                    },
+                    {
+                        "featureType": "landscape.natural.terrain",
+                        "elementType": "geometry",
+                        "stylers": [
+                            {
+                                "visibility": "off"
+                            }
+                        ]
+                    },
+                    {
+                        "featureType": "poi",
+                        "elementType": "labels",
+                        "stylers": [
+                            {
+                                "visibility": "off"
+                            }
+                        ]
+                    },
+                    {
+                        "featureType": "poi.business",
+                        "elementType": "all",
+                        "stylers": [
+                            {
+                                "visibility": "off"
+                            }
+                        ]
+                    },
+                    {
+                        "featureType": "poi.medical",
+                        "elementType": "geometry",
+                        "stylers": [
+                            {
+                                "color": "#fbd3da"
+                            }
+                        ]
+                    },
+                    {
+                        "featureType": "poi.park",
+                        "elementType": "geometry",
+                        "stylers": [
+                            {
+                                "color": "#bde6ab"
+                            }
+                        ]
+                    },
+                    {
+                        "featureType": "road",
+                        "elementType": "geometry.stroke",
+                        "stylers": [
+                            {
+                                "visibility": "off"
+                            }
+                        ]
+                    },
+                    {
+                        "featureType": "road",
+                        "elementType": "labels",
+                        "stylers": [
+                            {
+                                "visibility": "off"
+                            }
+                        ]
+                    },
+                    {
+                        "featureType": "road.highway",
+                        "elementType": "geometry.fill",
+                        "stylers": [
+                            {
+                                "color": "#ffe15f"
+                            }
+                        ]
+                    },
+                    {
+                        "featureType": "road.highway",
+                        "elementType": "geometry.stroke",
+                        "stylers": [
+                            {
+                                "color": "#efd151"
+                            }
+                        ]
+                    },
+                    {
+                        "featureType": "road.arterial",
+                        "elementType": "geometry.fill",
+                        "stylers": [
+                            {
+                                "color": "#ffffff"
+                            }
+                        ]
+                    },
+                    {
+                        "featureType": "road.local",
+                        "elementType": "geometry.fill",
+                        "stylers": [
+                            {
+                                "color": "black"
+                            }
+                        ]
+                    },
+                    {
+                        "featureType": "transit.station.airport",
+                        "elementType": "geometry.fill",
+                        "stylers": [
+                            {
+                                "color": "#cfb2db"
+                            }
+                        ]
+                    },
+                    {
+                        "featureType": "water",
+                        "elementType": "geometry",
+                        "stylers": [
+                            {
+                                "color": "#a2daf2"
+                            }
+                        ]
+                    }
+                ]
+            };
             vm.marker = LocationManager.getMarker(activity.location);
+
 
 
         }
@@ -612,9 +752,10 @@
                 COPY_MORE_SIMILAR_ACTIVITIES: "Ver más actividades similares",
                 COPY_TO: " a ",
                 COPY_FREE: " Gratis",
-                COPY_VACANCY_SINGULAR: " vacante",
-                COPY_VACANCY: " vacantes",
-                COPY_NO_VACANCY: "Sin vacantes",
+                COPY_SCHEDULES: "Horarios",
+                COPY_VACANCY_SINGULAR: " cupo disponible",
+                COPY_VACANCY: " cupos disponibles",
+                COPY_NO_VACANCY: "Sin cupos disponibles",
                 COPY_HEADER_SIGN_UP: "¿Todo listo para aprender?",
                 COPY_SIGN_UP: "Inscribirse es más rápido que Flash, más seguro que Islandia y más fácil que la tabla del 1. ¡En serio!",
                 COPY_SIGN_UP_NO_DATES: "Por ahora no hay fechas disponibles para la clase.",
@@ -624,7 +765,7 @@
                 LABEL_EVALUATIONS: "Evaluaciones",
                 LABEL_SCHEDULE: "Horario",
                 LABEL_START: "Inicio",
-                LABEL_VACANCY: "Vacantes",
+                LABEL_VACANCY: "Cupos disponibles",
                 LABEL_SESSIONS_NUMBER: "N° de Clases",
                 LABEL_COST: "Precio",
                 LABEL_NEXT_DATE: "Próxima fecha de inicio",
