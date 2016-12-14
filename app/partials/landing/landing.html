@@ -128,15 +128,80 @@
         </div>
       </div>
       <hr class="col-xs-12 col-md-6 col-md-offset-3  separate-below-medium  separate-above-medium">
-      <div class="flex-cards " >
-           <trulii-activity-item data-activity="activity" ng-repeat="activity in home.cards"></trulii-activity-item>
-      </div>
-      <div class="row separate-above-more limited-width separate-below-more">
-        <div class="col-xs-10 col-md-8 center-block float-none ">
-          <div class="btn btn-blue-dark btn-lg btn-block "
-            ng-show="home.activities.length > 0" ng-click="home.viewMoreActivities()">
-              <span ng-bind="::home.strings.ACTIVITIES_BUTTON_COPY"></span>
-          </span>
+      <div class="col-xs-12">
+        <div class="row limited-width">
+          <div class="col-xs-12 separate-above-more separate-below-more">
+            <div class="row">
+              <div class="col-xs-12 separate-above">
+                <div class="row">
+                  <div class="col-xs-12">
+                    <h1 class="text-center separate-below text-xxlg font-arvo text-dark">
+                      <span ng-bind="::home.strings.ACTIVITIES_TITLE_COPY"></span>
+                    </h1>
+                  </div>
+                </div>
+              </div>
+              <div class="col-xs-12 separate-above">
+                <ul class="list-unstyled list-inline text-center activities-filters hidden-xs hidden-sm">
+                  <li class="btn btn-sm btn-bordered">
+                    Por comenzar
+                  </li>
+                  <li class="btn btn-sm btn-default">
+                    Recién publicadas
+                  </li>
+                  <li class="btn btn-sm btn-default">
+                    Populares
+                  </li>
+                  <li class="btn btn-sm btn-default">
+                    Menos de $99Mil
+                  </li>
+                  <li class="btn btn-sm btn-default">
+                    ¡Ponte en forma!
+                  </li>
+                  <li class="btn btn-sm btn-default">
+                    Mejora tu HV
+                  </li>
+                  <li class="btn btn-sm btn-default">
+                    Creativas
+                  </li>
+                </ul>
+                <select name="" id="" class="form-control hidden-md hidden-lg" ng-model="home.selectedACtivityFilter" ng-change="home.changeActivityFilter()">
+                  <option value="1">
+                    Por comenzar
+                  </option>
+                  <option value="2">
+                    Recién publicadas
+                  </option>
+                  <option value="3">
+                    Populares
+                  </option>
+                  <option value="4">
+                    Menos de $99Mil
+                  </option>
+                  <option value="5">
+                    ¡Ponte en forma!
+                  </option>
+                  <option value="6">
+                    Mejora tu HV
+                  </option>
+                  <option value="7">
+                    Creativas
+                  </option>
+                </select>
+              </div>
+            </div>
+            <div class="flex-cards separate-above separate-below">
+                  <trulii-activity-item data-activity="activity" ng-repeat="activity in home.cards"></trulii-activity-item>
+            </div>
+            <div class="row separate-above limited-width separate-below">
+              <div class="col-xs-10 col-sm-8 col-md-3 center-block float-none separate-above">
+                <div class="btn btn-bordered btn-block"
+                  ng-show="home.activities.length > 0" ng-click="home.viewMoreActivities()">
+                    <span ng-bind="::home.strings.ACTIVITIES_BUTTON_COPY"></span>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -166,41 +231,46 @@
   </div> 
 </div>
 <!--Video section-->
-<div class="col-xs-12 hidden-xs hidden-sm">
-  <div class="row">
-      <div class="trulii-cover__container">
-        <div class="trulii-cover__video limited-width">
-          <div class="trulii-cover__video-text">
-            <div class="row">
-              <div class="limited-width col-xs-12">
-                <div class="row">
-                  <div class="col-xs-15 col-md-8 col-md-offset-2">
-                    <h2 class="title " ng-bind="::home.strings.VIDEO_COPY"></h2>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="trulii-cover__video-play " ng-click="truliiVideo.playVideo(); home.toggleVideoShow()">
-            <i class="fa fa-play" aria-hidden="true"></i>
-          </div>
-        </div> 
-        <div class="trulii-cover__background background-none" ng-style="{'background-image': 'url({{home.getAmazonUrl('static/img/home/cover_video.png')}})'}"></div>
+<div class="col-xs-12 container-yellow trulii-tv hidden-xs hidden-sm">
+  <div class="row limited-width">
+    <div class="col-xs-12 separate-above-more separate-below-more">
+      <div class="row">
+        <div class="col-xs-12">
+          <h1 class="text-center separate-below text-xxlg font-arvo">
+            <strong ng-bind="::home.strings.VIDEO_COPY"></strong>
+          </h1>
+        </div>
       </div>
+      <div class="row separate-above-more separate-below-more">
+        <div class="col-xs-12 col-md-6 trulii-tv-column">
+          <ol>
+            <li>
+              Clases, cursos, talleres y diplomados presenciales en tu ciudad.
+            </li>
+            <li>
+              La mayoría de las actividades no son organizadas por nosotros.
+            </li>
+            <li>
+              Inscríbete a cualquier actividad pagando con tarjeta de crédito y débito. Sólo paga el valor de la actividad. Sin comisiones ocultas.
+            </li>
+            <li>
+              Reembolso 100% del pago en caso de no efectuarse la actividad.
+            </li>
+          </ol>
+        </div>
+        <div class="col-xs-6 col-md-6 trulii-tv-column">
+          <img class="center-block television" ng-src="{{home.getAmazonUrl('static/img/home/tv.png')}}" alt=""/>
+          <h5 class="text-arvo" ng-click="truliiVideo.playVideo(); home.toggleVideoShow()">
+            Ver la tele 
+            <span class="play-button">
+              <span class="play-icon"></span>
+            </span>
+          </h5>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
-<div class="absolute-container" ng-show="home.showVideo">
-  <div class="absolute-container__cover-close"  ng-click="truliiVideo.stopVideo(); home.toggleVideoShow()"></div>
-  <button class="pull-right absolute-container__close" ng-click="truliiVideo.stopVideo(); home.toggleVideoShow()">
-    <img class="img-responsive" ng-src="{{home.getAmazonUrl('static/img/activity-enroll/close.png')}}" alt=""/>
-  </button>
-  <div class="col-xs-12 col-md-8">
-    <div class="youtube-container separate-above separate-below">
-      <youtube-video player="truliiVideo" video-url="'https://www.youtube.com/watch?v=ZHzQxVBNxfI'"></youtube-video>
-    </div>
-  </div> 
-</div> 
-
 
 <!--Info section-->
 <div class="col-xs-12 container-muted hidden-xs hidden-sm" id="anchor-how">

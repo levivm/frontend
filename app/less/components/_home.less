@@ -181,3 +181,93 @@
       box-shadow: #DCDDE2 5px 10px 25px 4px;
   }
 }
+
+
+.trulii-tv{
+  h1{
+    z-index: 15;
+  }
+  h5{
+    position: absolute;
+    bottom: 0;
+    text-align: center;
+    width: 100%;
+    font-family: "Arvo";
+    font-size: 20px;
+    color: #000;
+    cursor: pointer;
+  }
+  .trulii-tv-column{
+    height: 350px;
+    z-index: 10;
+    position: relative;
+  }
+  ol{
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+    li{
+      counter-increment: step-counter;
+      font-weight: bold;
+      padding: 25px 10px;
+      border-bottom: solid fade(@gray-dark, 50%) 1px;
+    }
+    li:before{
+      background-color: white;
+      content: counter(step-counter);
+      width: 10px;
+      height: 10px;
+      border-radius: 10px;
+      padding: 0px 5px;
+      margin-right: 15px;
+      font-weight: bold;
+    }
+  }
+  .television{
+    position: absolute;
+    top: -175px;
+    left: -25%;
+    z-index: -1;
+    width: 600px;
+    height: auto;
+  }
+  .play-button{
+    background-color: @brand-red;
+    width: 30px;
+    height: 30px;
+    display: inline-block;
+    .play-icon{
+      width: 0;
+      height: 0;
+      border-style: solid;
+      display: inline-block;
+      border-width: 7.5px 0 7.5px 10px;
+      margin-top: 7.5px;
+      border-color: transparent transparent transparent #ffffff;
+    }
+  }
+}
+
+.activities-filters{
+  .btn{
+      padding: 5px 15px;
+      font-size: 0.9em !important;
+      &.btn-default, &.btn-bordered{
+        margin-right: 10px;
+        color: @gray-regular-dark !important;
+      }
+      &.btn-bordered:hover, &.btn-bordered:focus{
+        color: white !important;
+      }
+  }
+}
+.organizer-info{
+  h1{
+    .before-md({
+      font-size: 24px;
+    });
+  }
+}
+
+
+
