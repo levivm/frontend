@@ -528,10 +528,7 @@
     margin-top: 5px;
     float: right;
     opacity: 0.5;
-    display: none;
-    .before-md({
-        display: block;
-    });
+    display: block;
 }
 
 .calendars-mobile{
@@ -939,16 +936,21 @@
     .content {
         margin-top: 0.6em;
         margin-bottom: 0.6em;
-        height: 100%;
+        height: auto;
         transition: all 0.5s;
-        @media (max-width: 768px){
-            .content-mobile{
-                height: 0;
-            }
+        padding-bottom: 50px;
+        max-height: auto;
+        &.content-collapsed{
+            max-height: 100px;
+            overflow-y: hidden;
         }
         ul, ol{
             padding-left: 30px;
         }
+    }
+    .text-collapser{
+        color: @brand-primary !important;
+        cursor: pointer;
     }
 
     &::after{

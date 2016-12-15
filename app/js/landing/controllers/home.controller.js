@@ -71,7 +71,28 @@
 
         function viewMoreActivities(){
             var city = LocationManager.getSearchCity();
-            $state.go('search', {'city': city.id});
+            var parameters = {
+                'city': 1,
+                'cost_start': 30000,
+                'cost_end': 1000000,
+                'page': 1,
+                'o': "closest"
+            };
+
+            if(vm.selectedActivityFilter === "4"){
+                parameters.cost_end = 99000;
+                parameters.cost_start = 0;
+            }
+            if(vm.selectedActivityFilter === "5"){
+                parameters.category = 10;
+            }
+            if(vm.selectedActivityFilter === "6"){
+                parameters.category = 5;
+            }
+            if(vm.selectedActivityFilter === "7"){
+                parameters.category = 7;
+            }
+            $state.go('search', parameters);
         }
 
         function organizerCategories(index){
@@ -83,7 +104,9 @@
         }
 
         function changeActivityFilter(index){
-            vm.selectedActivityFilter = index;
+            if(index){
+                vm.selectedActivityFilter = index;
+            }
 
             var parameters = {
                 'city': 1,
@@ -93,17 +116,17 @@
                 'o': "closest"
             };
 
-            if(index === "4"){
+            if(vm.selectedActivityFilter === "4"){
                 parameters.cost_end = 99000;
                 parameters.cost_start = 0;
             }
-            if(index === "5"){
+            if(vm.selectedActivityFilter === "5"){
                 parameters.category = 10;
             }
-            if(index === "6"){
+            if(vm.selectedActivityFilter === "6"){
                 parameters.category = 5;
             }
-            if(index === "7"){
+            if(vm.selectedActivityFilter === "7"){
                 parameters.category = 7;
             }
 
@@ -185,7 +208,7 @@
                 ACTIVITIES_TITLE_COPY: "Actividades populares",
                 ACTIVITIES_TEXT_COPY: "Hacemos de tu ciudad un sitio con infinitas posibilidades para aprender algo nuevo.",
                 ACTIVITIES_BUTTON_COPY: "Ver más actividades similares",
-                VIDEO_COPY: "¡Con Trulii puedes ser quien tú quieras!",
+                VIDEO_COPY: "Conócenos un poquito más",
                 CATEGORIES_TITLE_COPY: "Categorías",
                 CATEGORIES_TEXT_COPY: "Habla un nuevo idioma. Aprende a tocar un nuevo instrumento. Ponte en forma. Mejora tu currículo. ¡Aprende lo que quieras!",
                 HOW_TITLE_COPY: "¿Cómo funciona?",
@@ -212,7 +235,11 @@
                 FILTER_LESS_NINETYNINE: "Menos de $99Mil",
                 FILTER_GET_IN_SHAPE: "¡Ponte en forma!",
                 FILTER_RESUME: "Mejora tu HV",
-                FILTER_CREATIVES: "Creativas"
+                FILTER_CREATIVES: "Creativas",
+                COPY_TV_BULLET_1: "Clases, cursos, talleres y diplomados presenciales en tu ciudad.",
+                COPY_TV_BULLET_2: "La mayoría de las actividades no son organizadas por nosotros.",
+                COPY_TV_BULLET_3: "Inscríbete a cualquier actividad pagando con tarjeta de crédito y débito. Sólo paga el valor de la actividad. Sin comisiones ocultas.",
+                COPY_TV_BULLET_4: "Reembolso 100% del pago en caso de no efectuarse la actividad."
             });
         }
 

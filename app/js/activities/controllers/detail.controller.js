@@ -821,7 +821,9 @@
                 COPY_CLASSES_SINGULAR: " Clase",
                 COPY_CLASSES: " Clases",
                 COPY_ADD_TO_WISHLIST: "Agregar a favoritos",
-                COPY_REMOVE_FROM_WISHLIST: "Quitar de favoritos"
+                COPY_REMOVE_FROM_WISHLIST: "Quitar de favoritos",
+                LABEL_READ_MORE: "+ Leer mas",
+                LABEL_READ_LESS: "- Leer menos"
             });
         }
         function _updateWidgetValues(){

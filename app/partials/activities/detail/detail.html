@@ -323,16 +323,16 @@
         <div class="col-xs-12 section">
           <div class="row">
             <div class="col-xs-12 col-md-3 col-lg-2">
-              <h5 class="text-primary text-uppercase" ng-click="detail.showAudience = !detail.showAudience;">
+              <h5 class="text-primary text-uppercase">
                 <strong ng-bind="::detail.strings.LABEL_AUDIENCE"></strong>
-                <img ng-src="{{detail.getAmazonUrl('static/img/plus.png')}}" class="collapse-icon" alt="" ng-show="!detail.showAudience">
-                <img ng-src="{{detail.getAmazonUrl('static/img/minus.png')}}" class="collapse-icon" alt="" ng-show="detail.showAudience">
               </h5>
             </div>
             <div class="col-xs-12 col-md-9 col-lg-10">
-              <div class="content content-html" ng-class="{'content-mobile': !detail.showAudience}">
+              <div class="content content-html" ng-class="{'content-collapsed': detail.showAudience}">
                 <p ng-bind-html="::detail.activity.audience"></p>
               </div>
+              <p class="text-right text-collapser" ng-click="detail.showAudience = !detail.showAudience;" ng-bind="detail.strings.LABEL_READ_MORE" ng-show="!detail.showAudience"></p>
+              <p class="text-right text-collapser" ng-click="detail.showAudience = !detail.showAudience;" ng-bind="detail.strings.LABEL_READ_LESS" ng-show="detail.showAudience"></p>
               <hr class="detail-separator">
             </div>  
           </div>
@@ -344,16 +344,16 @@
         <div class="col-xs-12 section">
           <div class="row">
             <div class="col-xs-12 col-md-3 col-lg-2">
-              <h5 class="text-primary text-uppercase" ng-click="detail.showContent = !detail.showContent;">
+              <h5 class="text-primary text-uppercase">
                 <strong ng-bind="::detail.strings.LABEL_CONTENT"></strong>
-                <img ng-src="{{detail.getAmazonUrl('static/img/plus.png')}}" class="collapse-icon" alt="" ng-show="!detail.showContent">
-                <img ng-src="{{detail.getAmazonUrl('static/img/minus.png')}}" class="collapse-icon" alt="" ng-show="detail.showContent">
               </h4>
             </div>
             <div class="col-xs-12 col-md-9 col-lg-10">
-              <div class="content content-html" ng-class="{'content-mobile': !detail.showContent}">
+              <div class="content content-html" ng-class="{'content-collapsed': detail.showContent}">
                 <p ng-bind-html="::detail.activity.content" ></p>
               </div>
+              <p class="text-right text-collapser" ng-click="detail.showContent = !detail.showContent;" ng-bind="detail.strings.LABEL_READ_MORE" ng-show="!detail.showContent"></p>
+              <p class="text-right text-collapser" ng-click="detail.showContent = !detail.showContent;" ng-bind="detail.strings.LABEL_READ_LESS" ng-show="detail.showContent"></p>
               <hr class="detail-separator">
             </div>
           </div>
@@ -366,16 +366,16 @@
         <div class="col-xs-12 section">
           <div class="row">
             <div class="col-xs-12 col-md-3 col-lg-2">
-              <h5 class="text-primary text-uppercase" ng-click="detail.showGoals = !detail.showGoals;">
+              <h5 class="text-primary text-uppercase">
                 <strong ng-bind="::detail.strings.LABEL_GOALS"></strong>
-                <img ng-src="{{detail.getAmazonUrl('static/img/plus.png')}}" class="collapse-icon" alt="" ng-show="!detail.showGoals">
-                <img ng-src="{{detail.getAmazonUrl('static/img/minus.png')}}" class="collapse-icon" alt="" ng-show="detail.showGoals">
               </h4>
             </div>
             <div class="col-xs-12 col-md-9 col-lg-10">
-              <div class="content content-html" ng-class="{'content-mobile': !detail.showGoals}">
+              <div class="content content-html" ng-class="{'content-collapsed': detail.showGoals}">
                 <p ng-bind-html="::detail.activity.goals" ></p>
               </div>
+              <p class="text-right text-collapser" ng-click="detail.showGoals = !detail.showGoals;" ng-bind="detail.strings.LABEL_READ_MORE" ng-show="!detail.showGoals"></p>
+              <p class="text-right text-collapser" ng-click="detail.showGoals = !detail.showGoals;" ng-bind="detail.strings.LABEL_READ_LESS" ng-show="detail.showGoals"></p>
               <hr class="detail-separator">
             </div>
           </div>
@@ -399,16 +399,16 @@
           <div class="separator separate-vertical" ng-if="!detail.activity.youtube_video_url"></div>
           <div class="row">
             <div class="col-xs-12 col-md-3 col-lg-2">
-              <h5 class="text-primary text-uppercase" ng-click="detail.showMethodology = !detail.showMethodology;">
+              <h5 class="text-primary text-uppercase">
                 <strong ng-bind="::detail.strings.LABEL_METHODOLOGY"></strong>
-                <img ng-src="{{detail.getAmazonUrl('static/img/plus.png')}}" class="collapse-icon" alt="" ng-show="!detail.showMethodology">
-                <img ng-src="{{detail.getAmazonUrl('static/img/minus.png')}}" class="collapse-icon" alt="" ng-show="detail.showMethodology">
               </h4>
             </div>
             <div class="col-xs-12 col-md-9 col-lg-10">
-              <div class="content content-html" ng-class="{'content-mobile': !detail.showMethodology}">
+              <div class="content content-html" ng-class="{'content-collapsed': detail.showMethodology}">
                 <p  ng-bind-html="::detail.activity.methodology"></p>
               </div>
+              <p class="text-right text-collapser" ng-click="detail.showMethodology = !detail.showMethodology;" ng-bind="detail.strings.LABEL_READ_MORE" ng-show="!detail.showMethodology"></p>
+              <p class="text-right text-collapser" ng-click="detail.showMethodology = !detail.showMethodology;" ng-bind="detail.strings.LABEL_READ_LESS" ng-show="detail.showMethodology"></p>
               <hr class="detail-separator">
             </div>
           </div>
@@ -421,16 +421,16 @@
         <div class="col-xs-12 section">
           <div class="row">
             <div class="col-xs-12 col-md-3 col-lg-2">
-              <h5 class="text-primary text-uppercase" ng-click="detail.showRequirements = !detail.showRequirements;">
+              <h5 class="text-primary text-uppercase">
                 <strong ng-bind="::detail.strings.LABEL_REQUIREMENTS"></strong>
-                <img ng-src="{{detail.getAmazonUrl('static/img/plus.png')}}" class="collapse-icon" alt="" ng-show="!detail.showRequirements">
-                <img ng-src="{{detail.getAmazonUrl('static/img/minus.png')}}" class="collapse-icon" alt="" ng-show="detail.showRequirements">
               </h4>
             </div>
             <div class="col-xs-12 col-md-9 col-lg-10">
-              <div class="content content-html" ng-class="{'content-mobile': !detail.showRequirements}">
+              <div class="content content-html" ng-class="{'content-collapsed': detail.showRequirements}">
                 <p  ng-bind-html="::detail.activity.requirements"></p>
               </div>
+              <p class="text-right text-collapser" ng-click="detail.showRequirements = !detail.showRequirements;" ng-bind="detail.strings.LABEL_READ_MORE" ng-show="!detail.showRequirements"></p>
+              <p class="text-right text-collapser" ng-click="detail.showRequirements = !detail.showRequirements;" ng-bind="detail.strings.LABEL_READ_LESS" ng-show="detail.showRequirements"></p>
               <hr class="detail-separator">
             </div>
           </div>
@@ -442,16 +442,16 @@
         <div class="col-xs-12 section separate-below">
           <div class="row">
             <div class="col-xs-12 col-md-3 col-lg-2">
-              <h5 class="text-primary text-uppercase" ng-click="detail.showExtra = !detail.showExtra;">
+              <h5 class="text-primary text-uppercase">
                 <strong ng-bind="::detail.strings.LABEL_EXTRA_INFO"></strong>
-                <img ng-src="{{detail.getAmazonUrl('static/img/plus.png')}}" class="collapse-icon" alt="" ng-show="!detail.showExtra">
-                <img ng-src="{{detail.getAmazonUrl('static/img/minus.png')}}" class="collapse-icon" alt="" ng-show="detail.showExtra">
               </h4>
             </div>
             <div class="col-xs-12 col-md-9 col-lg-10">
-              <div class="content content-html" ng-class="{'content-mobile': !detail.showExtra}">
+              <div class="content content-html" ng-class="{'content-collapsed': detail.showExtra}">
                 <p  ng-bind-html="::detail.activity.extra_info" ></p>
               </div>
+              <p class="text-right text-collapser" ng-click="detail.showExtra = !detail.showExtra;" ng-bind="detail.strings.LABEL_READ_MORE" ng-show="!detail.showExtra"></p>
+              <p class="text-right text-collapser" ng-click="detail.showExtra = !detail.showExtra;" ng-bind="detail.strings.LABEL_READ_LESS" ng-show="detail.showExtra"></p>
               <hr class="detail-separator">
             </div>
           </div>

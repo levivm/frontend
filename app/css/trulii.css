@@ -13237,7 +13237,7 @@ hr.on-light {
   }
 }
 .text-xlg {
-  font-size: 1.5em;
+  font-size: 1.5em !important;
 }
 @media screen and (max-width: 992px) {
   .text-xlg {
@@ -13245,7 +13245,7 @@ hr.on-light {
   }
 }
 .text-xxlg {
-  font-size: 4em;
+  font-size: 4em !important;
 }
 @media screen and (max-width: 992px) {
   .text-xxlg {
@@ -21246,7 +21246,11 @@ button.toast-close-button {
 .trulii-cover__background,
 .trulii-cover-small__background,
 .trulii-cover-medium__background,
-.trulii-cover-regular__background {
+.trulii-cover-regular__background,
+.trulii-cover__background-light,
+.trulii-cover-small__background-light,
+.trulii-cover-medium__background-light,
+.trulii-cover-regular__background-light {
   width: 100%;
   min-width: 100vw;
   background-size: cover;
@@ -21265,7 +21269,11 @@ button.toast-close-button {
 .trulii-cover__background-video,
 .trulii-cover-small__background-video,
 .trulii-cover-medium__background-video,
-.trulii-cover-regular__background-video {
+.trulii-cover-regular__background-video,
+.trulii-cover__background-light-video,
+.trulii-cover-small__background-light-video,
+.trulii-cover-medium__background-light-video,
+.trulii-cover-regular__background-light-video {
   position: absolute;
   right: 0;
   bottom: 0;
@@ -21277,10 +21285,20 @@ button.toast-close-button {
   background-size: cover;
   overflow: hidden;
 }
+.trulii-cover__background-light:after,
+.trulii-cover-small__background-light:after,
+.trulii-cover-medium__background-light:after,
+.trulii-cover-regular__background-light:after {
+  background-color: rgba(60, 61, 65, 0) !important;
+}
 .trulii-cover__background:after,
 .trulii-cover-small__background:after,
 .trulii-cover-medium__background:after,
-.trulii-cover-regular__background:after {
+.trulii-cover-regular__background:after,
+.trulii-cover__background-light:after,
+.trulii-cover-small__background-light:after,
+.trulii-cover-medium__background-light:after,
+.trulii-cover-regular__background-light:after {
   width: 100%;
   height: 100%;
   content: "";
@@ -22378,12 +22396,7 @@ blockquote {
   margin-top: 5px;
   float: right;
   opacity: 0.5;
-  display: none;
-}
-@media screen and (max-width: 992px) {
-  .collapse-icon {
-    display: block;
-  }
+  display: block;
 }
 .calendars-mobile .calendar-mobile {
   border: 1px solid #ededed;
@@ -22816,17 +22829,22 @@ blockquote {
 .section .content {
   margin-top: 0.6em;
   margin-bottom: 0.6em;
-  height: 100%;
+  height: auto;
   transition: all 0.5s;
+  padding-bottom: 50px;
+  max-height: auto;
 }
-@media (max-width: 768px) {
-  .section .content .content-mobile {
-    height: 0;
-  }
+.section .content.content-collapsed {
+  max-height: 100px;
+  overflow-y: hidden;
 }
 .section .content ul,
 .section .content ol {
   padding-left: 30px;
+}
+.section .text-collapser {
+  color: #00e2aa !important;
+  cursor: pointer;
 }
 .section::after {
   width: 100%;
@@ -26465,7 +26483,7 @@ blockquote {
 }
 .trulii-tv h5 {
   position: absolute;
-  bottom: 0;
+  top: 50%;
   text-align: center;
   width: 100%;
   font-family: "Arvo";
@@ -26498,6 +26516,8 @@ blockquote {
   padding: 0px 5px;
   margin-right: 15px;
   font-weight: bold;
+  color: #000;
+  font-size: 12px;
 }
 .trulii-tv .television {
   position: absolute;
@@ -26508,18 +26528,26 @@ blockquote {
   height: auto;
 }
 .trulii-tv .play-button {
-  background-color: #fe5339;
-  width: 30px;
-  height: 30px;
+  background-color: rgba(255, 255, 255, 0.4);
+  width: 90px;
+  height: 90px;
   display: inline-block;
+  margin-top: 0;
+}
+.trulii-tv .play-button:hover {
+  width: 120px;
+  height: 120px;
+  background-color: rgba(255, 255, 255, 0.6);
+  margin-top: -20px;
 }
 .trulii-tv .play-button .play-icon {
   width: 0;
   height: 0;
   border-style: solid;
   display: inline-block;
-  border-width: 7.5px 0 7.5px 10px;
-  margin-top: 7.5px;
+  border-width: 18.75px 0 18.5px 25px;
+  margin-top: 50%;
+  transform: translateY(-50%);
   border-color: transparent transparent transparent #ffffff;
 }
 .activities-filters .btn {
