@@ -116,6 +116,7 @@
                 'o': "closest"
             };
 
+            
             if(vm.selectedActivityFilter === "4"){
                 parameters.cost_end = 99000;
                 parameters.cost_start = 0;
@@ -130,10 +131,18 @@
                 parameters.category = 7;
             }
 
-            return SearchManager.searchActivities(parameters).then(success, error);
+            if(vm.selectedActivityFilter !== "3"){
+                return SearchManager.searchActivities(parameters).then(success, error);
+            }
+            else{
+                var begin = activitiesIndex;
+                var end = activitiesIndex + ACTIVITIES_STEP;
+                if(activities.length < end) { end = activities.length; }
+                vm.activities = activities.slice(begin, end);
+            }
 
             function success(response) {
-                vm.activities = response.activities;
+                vm.activities = response.activities.splice(0, 8);
                 vm.loadingActivities = false;
 
                 for(var i = 0; i < vm.activities.length; i++){
