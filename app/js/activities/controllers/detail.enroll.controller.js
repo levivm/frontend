@@ -45,7 +45,9 @@
         angular.extend(vm, {
             success : false,
             loading_banks_list:false,
+            paymentWithCc:true,
             paymentWithPse : false,
+            paymentWithConsignment: false,
             hasCouponApplied: false,
             invalidCoupon: false,
             calendar : null,
@@ -77,6 +79,7 @@
             getCardType: getCardType,
             changePSEPaymentMethod: changePSEPaymentMethod,
             changeCCPaymentMethod: changeCCPaymentMethod,
+            changeConsPaymentMethod:changeConsPaymentMethod,
             enrollPSE: enrollPSE,
             toggleTerms : toggleTerms,
             toggleReimbursement : toggleReimbursement,
@@ -173,7 +176,12 @@
 
         function changePSEPaymentMethod(){
             Error.form.resetForm(vm.enrollForm);
+            vm.paymentWithCc = false;
+            vm.paymentWithConsignment = false;
             vm.paymentWithPse = true;
+            
+           
+
             loadAvailableBanks();
 
             function loadAvailableBanks(){
@@ -198,6 +206,14 @@
         function changeCCPaymentMethod(){
             Error.form.resetForm(vm.enrollForm);
             vm.paymentWithPse = false;
+            vm.paymentWithConsignment = false;
+            vm.paymentWithCc = true;
+        }
+
+        function changeConsPaymentMethod(){
+            vm.paymentWithPse = false;
+            vm.paymentWithCc = false;
+            vm.paymentWithConsignment = true;
         }
 
         function enrollPSE(){
@@ -857,6 +873,7 @@
                 PLACEHOLDER_CVV:"CVV",
                 LABEL_CARD: "Tarjeta",
                 LABEL_PSE: "PSE",
+                LABEL_CONS: "Consignación",
 
                 COPY_HEADER_REASONS_TO_USE: "¿Por qué inscribirte con Trulii?",
                 COPY_DOUBTS:"¿Alguna duda? Estamos a tu orden todos los días",
@@ -882,7 +899,7 @@
             vm.scroll = window.scrollY;
             if(document.getElementsByClassName('activity-enroll')[0]){
                 vm.widgetOriginalPosition = document.getElementsByClassName('activity-enroll')[0].getBoundingClientRect().top + window.scrollY + 50;
-                vm.widgetMaxPosition = document.getElementsByClassName('activity-enroll')[0].getBoundingClientRect().bottom + window.scrollY - 320;
+                vm.widgetMaxPosition = document.getElementsByClassName('activity-enroll')[0].getBoundingClientRect().bottom + window.scrollY - 300;
                 vm.widgetAbsolutePosition = (document.getElementsByClassName('activity-enroll')[0].getBoundingClientRect().bottom + window.scrollY) - (document.getElementsByClassName('cover-blur-small')[0].getBoundingClientRect().bottom + window.scrollY);
                 vm.widgetFixedPositionLeft = document.getElementsByClassName('activity-enroll')[0].getBoundingClientRect().left + 30;
                 vm.widgetFixedPositionRight = document.getElementsByClassName('activity-enroll')[0].getBoundingClientRect().right - 30 - 225;

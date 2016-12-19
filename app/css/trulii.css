@@ -14738,6 +14738,10 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
 .navbar-landing .navbar__logo-container {
   background: transparent !important;
 }
+.navbar-landing .navbar__logo {
+  background: url('https://s3-us-west-2.amazonaws.com/trulii-dev/static/img/logo-white.png') no-repeat;
+  background-size: contain;
+}
 .navbar-landing .navbar__option--right {
   border-left: none;
 }
@@ -20051,10 +20055,10 @@ button.toast-close-button {
 }
 .cover-blur-small {
   background-repeat: no-repeat;
-  background-image: url('https://s3-us-west-2.amazonaws.com/trulii-dev/static/img/banner_edit_activity.png');
+  background-image: url('https://s3-us-west-2.amazonaws.com/trulii-dev/static/img/home/banners/banner.png');
   background-size: cover;
   width: 100vw;
-  height: 300px;
+  height: 350px;
   position: relative;
   top: 0px;
 }
@@ -23820,8 +23824,8 @@ blockquote {
   border-top: none;
 }
 .enroll-section__body .nav-tabs-light li {
-  width: 310px;
-  height: 90px;
+  width: 33.33333%;
+  height: 72px;
   display: inline-block;
   float: none;
   margin-bottom: 0px;
@@ -23833,12 +23837,21 @@ blockquote {
   border-right: none;
 }
 .enroll-section__body .nav-tabs-light li a {
-  padding-top: 18px;
+  padding-top: 12px;
+  font-size: 15px;
+  font-weight: 600;
+  color: #b9bed1 !important;
 }
 .enroll-section__body .nav-tabs-light li:hover,
 .enroll-section__body .nav-tabs-light li:focus,
 .enroll-section__body .nav-tabs-light li.active {
   background-color: #f0f2f7;
+  color: #3A405B !important;
+}
+.enroll-section__body .nav-tabs-light li:hover span,
+.enroll-section__body .nav-tabs-light li:focus span,
+.enroll-section__body .nav-tabs-light li.active span {
+  color: #3A405B !important;
 }
 .enroll-section__body .enroll-footer__disclaimer {
   margin-top: 50px;
@@ -25254,6 +25267,14 @@ blockquote {
 }
 .pse-payment .input-group input {
   width: 50%;
+}
+.pcb-payment p {
+  color: #3A405B;
+  margin-bottom: 0;
+  font-weight: 600;
+  font-size: 1.1em;
+  width: 90%;
+  margin: 0 auto;
 }
 .activity-enroll-success {
   background-color: white;

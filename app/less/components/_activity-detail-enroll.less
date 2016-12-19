@@ -281,8 +281,8 @@
             text-align: center;
             border-top: none;
             li{
-                width: 310px;
-                height: 90px;
+                width: 33.33333%;
+                height: 72px;
                 display: inline-block;
                 float: none;
                 margin-bottom: 0px;
@@ -293,10 +293,17 @@
                     border-right: none;
                 }
                 a{
-                    padding-top: 18px;
+                    padding-top: 12px;
+                    font-size: 15px;
+                    font-weight: 600;
+                    color: @gray-regular-brand !important;
                 }
                 &:hover, &:focus, &.active{
                     background-color: @gray-lighter-brand;
+                    color: @blue-dark !important;
+                    span{
+                       color: @blue-dark !important; 
+                    }
                 }
             }
         }
@@ -752,7 +759,16 @@
         }
     }
 }
-
+.pcb-payment{
+    p{
+        color: @blue-dark;
+        margin-bottom: 0;
+        font-weight: 600;
+        font-size: 1.1em;
+        width: 90%;
+        margin: 0 auto;
+    }
+}
 .activity-enroll-success{
     background-color: white;
     padding: 25px 330px 0px 40px;

@@ -210,7 +210,7 @@
                         <div class="enroll-section__header">
                             <h5>
                                 <span ng-bind="::enroll.strings.LABEL_ASSISTANTS"></span> 
-                                <span class="font-light text-gray-dark" ng-bind="::enroll.strings.COPY_ASSISTANTS"></span>
+                                <span class="font-light text-gray-dark"  ng-bind="::enroll.strings.COPY_ASSISTANTS"></span>
                             </h5>
                             <div class="input-group">
                                 <span class="input-group-btn">
@@ -293,23 +293,34 @@
                                 <select class="hidden-md hidden-lg form-control" ng-model="enroll.selectedPayment" name="" id="" ng-change="enroll.setPayment()">
                                     <option value="card" ng-bind="enroll.strings.LABEL_CARD"></option>
                                     <option value="pse" ng-bind="enroll.strings.LABEL_PSE"></option>
+                                    <option value="consig" ng-bind="enroll.strings.LABEL_CONS"></option>
                                 </select>
                                 <ul class="nav nav-tabs nav-tabs-light hidden-xs hidden-sm" style="margin-bottom: 15px;">
-                                    <li ng-class="{'active': !enroll.paymentWithPse}"
+                                    <li ng-class="{'active': enroll.paymentWithCc}"
                                         ng-click="enroll.changeCCPaymentMethod()">
                                         <a href="">
-                                            <img ng-src="{{enroll.getAmazonUrl('static/img/enroll/card.png')}}" alt="PSE"/>
+                                            <!-- <img ng-src="{{enroll.getAmazonUrl('static/img/enroll/card.png')}}" alt="PSE"/> -->
+                                            <span>Tarjeta de crédito</span>
                                         </a>
                                     </li>
                                     <li ng-class="{'active': enroll.paymentWithPse}"
                                         ng-click="enroll.changePSEPaymentMethod()">
                                         <a href="">
-                                            <img ng-if="enroll.paymentWithPse" ng-src="{{enroll.getAmazonUrl('static/img/enroll/pse_on.png')}}" alt="PSE"/>
-                                            <img ng-if="!enroll.paymentWithPse" ng-src="{{enroll.getAmazonUrl('static/img/enroll/pse_off.png')}}" alt="PSE"/>
+                                            <!-- <img ng-if="enroll.paymentWithPse" ng-src="{{enroll.getAmazonUrl('static/img/enroll/pse_on.png')}}" alt="PSE"/>
+                                            <img ng-if="!enroll.paymentWithPse" ng-src="{{enroll.getAmazonUrl('static/img/enroll/pse_off.png')}}" alt="PSE"/> -->
+                                            <span>PSE</span>
+                                        </a>
+                                    </li>
+                                    <li ng-class="{'active': enroll.paymentWithConsignment}"
+                                        ng-click="enroll.changeConsPaymentMethod()">
+                                        <a href="">
+                                            <!-- <img ng-if="enroll.paymentWithPse" ng-src="{{enroll.getAmazonUrl('static/img/enroll/pse_on.png')}}" alt="PSE"/>
+                                            <img ng-if="!enroll.paymentWithPse" ng-src="{{enroll.getAmazonUrl('static/img/enroll/pse_off.png')}}" alt="PSE"/> -->
+                                            <span>Consignación Bancaria</span>
                                         </a>
                                     </li>
                                 </ul>
-                                 <div class="col-xs-12 credit-cards-container separate-above separate-below hiddden-xs hidden-sm">
+                                 <div class="col-xs-12 credit-cards-container separate-above separate-below hiddden-xs hidden-sm" ng-if="!enroll.paymentWithConsignment">
                                     <div class="row">
                                         <div class="col-xs-12 text-center">
                                             <ul class="list-unstyled">
@@ -334,7 +345,7 @@
                                 </div>
                                 <div>
                                     <!--Credit Card-->
-                                    <div class="fade in" ng-hide="enroll.paymentWithPse">
+                                    <div class="fade in" ng-if="enroll.paymentWithCc">
                                         <div class="row">
                                             <div class="col-xs-12 col-lg-8 col-lg-offset-2 card-info-container">
                                                 <div class="row separate-above-medium">
@@ -426,7 +437,7 @@
                                     </div>
                                     <!--PSE-->
                                     
-                                    <div class="fade in pse-payment" ng-show="enroll.paymentWithPse">
+                                    <div class="fade in pse-payment" ng-if="enroll.paymentWithPse">
                                         <div class="row">
                                             <trulii-preloader loader-control="enroll.loading_banks_list"></trulii-preloader>
                                             <div class="col-xs-12  separate-above" ng-show="!enroll.loading_banks_list" >
@@ -495,9 +506,21 @@
                                             </div>
                                         </div>
                                     </div>
+                                    <div class="fade in pcb-payment" ng-if="enroll.paymentWithConsignment">
+                                        <div class="row text-center">
+                                            <p class="separate-above separate-below">Para Consignación o transferencia bancaria, hacerlas a la siguiente cuenta:</p>
+                                            <div class="pcp-payment_account separate-below">
+                                                <p>Banco: Bancolombia</p>
+                                                <p>Beneficiario: Trulii S.A.S</p>
+                                                <p>Cta. ahorro nro: 19338947821</p>
+                                                <p>NIT: 900.823.805-9</p>
+                                            </div>
+                                            <p>Una vez realices el pago, notifícalo llamándonos al +57 (1) 308.80.29 o escribiéndonos a alo@trulii.com</p>
+                                        </div>
+                                    </div>
                                 </div>
                               </div>
-                              <div class="enroll-footer">
+                              <div class="enroll-footer" ng-if="!enroll.paymentWithConsignment">
                                 <div class="row">
                                     <div class="col-xs-12">
                                         <div class="form-group" trulii-input-errors-control="generalError">
@@ -520,7 +543,7 @@
                                             ng-bind="::enroll.strings.ACTION_ENROLL" ng-show="!enroll.processingPayment"></button>
                                     </div>
                                 </div>
-                                <div class="enroll-footer__disclaimer">
+                                <div class="enroll-footer__disclaimer" ng-if="!enroll.paymentWithConsignment">
                                     <span ng-bind="::enroll.strings.COPY_RELEASE_1"></span>
                                     <br>
                                     <span ng-bind="::enroll.strings.COPY_RELEASE_2"></span>
